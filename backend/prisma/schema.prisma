@@ -1,14 +1,136 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
-}
-
 datasource db {
   provider = "postgresql"
+}
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  password_hash String
+  role          Role
+  created_at    DateTime  @default(now())
+
+  orders        Order[]
+}
+
+enum Role {
+  ADMIN
+  WAITER
+  KITCHEN
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  products    Product[]
+}
+
+model Product {
+  id           Int       @id @default(autoincrement())
+  name         String
+  description  String?
+  price        Float
+  spicy_level  Int
+  is_available Boolean   @default(true)
+
+  category_id  Int
+  category     Category  @relation(fields: [category_id], references: [id])
+
+  order_items  OrderItem[]
+}
+
+model Table {
+  id     Int          @id @default(autoincrement())
+  name   String
+  status TableStatus
+
+  orders Order[]
+}
+
+enum TableStatus {
+  FREE
+  OCCUPIED
+  RESERVED
+}
+
+model Order {
+  id                 Int           @id @default(autoincrement())
+  type               OrderType
+  status             OrderStatus   @default(PENDING)
+  payment_status     PaymentStatus @default(UNPAID)
+  total_amount       Float         @default(0)
+  created_at         DateTime      @default(now())
+  closed_at          DateTime?
+
+  table_id           Int?
+  table              Table?        @relation(fields: [table_id], references: [id])
+
+  created_by_user_id Int
+  created_by         User          @relation(fields: [created_by_user_id], references: [id])
+
+  items              OrderItem[]
+}
+
+enum OrderType {
+  DINE_IN
+  TAKEOUT
+  DELIVERY
+}
+
+enum OrderStatus {
+  PENDING
+  IN_PREPARATION
+  READY
+  SERVED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  REFUNDED
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  quantity   Int
+  unit_price Float
+  subtotal   Float
+  notes      String?
+
+  order_id   Int
+  order      Order   @relation(fields: [order_id], references: [id])
+
+  product_id Int
+  product    Product @relation(fields: [product_id], references: [id])
+
+  sauces     OrderItemSauce[]
+}
+
+// Opcional: salsas
+model Sauce {
+  id          Int              @id @default(autoincrement())
+  name        String
+  spicy_level Int
+
+  order_items OrderItemSauce[]
+}
+
+// Tabla pivote N a N entre OrderItem y Sauce
+model OrderItemSauce {
+  order_item_id Int
+  sauce_id      Int
+
+  order_item    OrderItem @relation(fields: [order_item_id], references: [id])
+  sauce         Sauce     @relation(fields: [sauce_id], references: [id])
+
+  @@id([order_item_id, sauce_id])
 }
