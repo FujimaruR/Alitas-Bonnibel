@@ -14,14 +14,27 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  /**
-   * Valida email y password contra la base
-   */
   async validateUser(email: string, password: string) {
-    // findByEmail devuelve el usuario con password_hash
     const user = await this.usersService.findByEmail(email);
 
-    const passwordValid = await argon2.verify(user.password_hash, password);
+    console.log('🔐 validateUser()');
+    console.log('  email from DTO:', email);
+    console.log('  user found    :', user ? `${user.email} (id=${user.id})` : 'null');
+
+    if (!user) {
+      // Email no existe
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    let passwordValid = false;
+
+    try {
+      passwordValid = await argon2.verify(user.password_hash, password);
+      console.log('  passwordValid :', passwordValid);
+    } catch (e) {
+      console.error('  Error in argon2.verify:', e);
+      throw new UnauthorizedException('Invalid credentials');
+    }
 
     if (!passwordValid) {
       throw new UnauthorizedException('Invalid credentials');
@@ -30,9 +43,6 @@ export class AuthService {
     return user;
   }
 
-  /**
-   * Login: valida usuario y devuelve token
-   */
   async login(dto: LoginDto) {
     const user = await this.validateUser(dto.email, dto.password);
 

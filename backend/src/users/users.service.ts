@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-  import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as argon2 from 'argon2';
 
@@ -66,17 +66,14 @@ export class UsersService {
     return this.sanitizeUser(user);
   }
 
+  /**
+   * OJO: aquí devolvemos el usuario crudo (con password_hash)
+   * porque lo usamos solo para Auth, NO para frontend.
+   */
   async findByEmail(email: string) {
-    // Este lo usaremos después para login (Auth)
-    const user = await this.prisma.user.findUnique({
+    return this.prisma.user.findUnique({
       where: { email },
     });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    return user; // aquí sí devolvemos password_hash para comparar
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
@@ -116,7 +113,6 @@ export class UsersService {
   }
 
   async remove(id: number) {
-    // Validar existencia
     await this.findOne(id);
 
     const deleted = await this.prisma.user.delete({

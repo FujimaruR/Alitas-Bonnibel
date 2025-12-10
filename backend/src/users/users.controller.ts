@@ -20,6 +20,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  // 👇 ESTA ruta la dejamos PÚBLICA (sin guards)
+  @Post()
+  create(@Body() dto: CreateUserDto) {
+    return this.usersService.create(dto);
+  }
+
+  // 👇 Estas SÍ protegidas
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   @Get()
@@ -32,13 +39,6 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.findOne(id);
-  }
-
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('ADMIN')
-  @Post()
-  create(@Body() dto: CreateUserDto) {
-    return this.usersService.create(dto);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
