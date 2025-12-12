@@ -27,7 +27,7 @@ export function PublicFooter() {
         <div>
           <div className="font-bold mb-3">Contacto</div>
           <div className="space-y-2 text-sm text-white/75">
-            <p>WhatsApp: <span className="text-white">(+52) 81 1892 5876</span></p>
+            <p>WhatsApp: <span className="text-white">(+52) 81 1234 5876</span></p>
             <p>IG: <span className="text-white">@alitasbonnibel</span></p>
             <p>Correo: <span className="text-white">hola@alitasbonnibel.com</span></p>
           </div>
