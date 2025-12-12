@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+const WHATSAPP_NUMBER = "528118925876";
+const WHATSAPP_TEXT = encodeURIComponent("Hola! Quiero pedir un desarrollo web 🍗🔥");
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
+
+
 
 export function PublicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,11 +39,20 @@ export function PublicNavbar() {
 
               {/* Menú desktop */}
               <nav className="hidden md:flex items-center gap-7 text-sm font-semibold">
-                <a href="#menu" className="hover:text-wings-500 transition">Menú</a>
-                <a href="#sabores" className="hover:text-wings-500 transition">Sabores</a>
-                <a href="#nosotros" className="hover:text-wings-500 transition">Nosotros</a>
-                <a href="#contacto" className="hover:text-wings-500 transition">Contacto</a>
+                <NavLink to="/menu" className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                  Menú
+                </NavLink>
+                <NavLink to="/nosotros" className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                  Nosotros
+                </NavLink>
+                <NavLink to="/sucursales" className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                  Sucursales
+                </NavLink>
+                <NavLink to="/contacto" className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                  Contacto
+                </NavLink>
               </nav>
+
 
               {/* Acciones */}
               <div className="flex items-center gap-3">
@@ -48,9 +63,15 @@ export function PublicNavbar() {
                   Panel admin
                 </Link>
 
-                <button className="hidden md:inline px-4 py-2 rounded-full bg-wings-500 hover:bg-wings-400 text-white text-sm font-bold shadow-md transition">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hidden md:inline px-4 py-2 rounded-full bg-wings-500 hover:bg-wings-400 text-white text-sm font-bold shadow-md transition"
+                >
                   Pide ahora
-                </button>
+                </a>
+
 
                 {/* Hamburguesa móvil */}
                 <button
@@ -71,10 +92,18 @@ export function PublicNavbar() {
             {isMenuOpen && (
               <div className="md:hidden border-t border-slate-100 px-4 py-3">
                 <div className="flex flex-col gap-3 text-sm font-semibold">
-                  <a href="#menu" onClick={closeMenu} className="hover:text-wings-500">Menú</a>
-                  <a href="#sabores" onClick={closeMenu} className="hover:text-wings-500">Sabores</a>
-                  <a href="#nosotros" onClick={closeMenu} className="hover:text-wings-500">Nosotros</a>
-                  <a href="#contacto" onClick={closeMenu} className="hover:text-wings-500">Contacto</a>
+                  <NavLink to="/menu" onClick={closeMenu} className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                    Menú
+                  </NavLink>
+                  <NavLink to="/nosotros" onClick={closeMenu} className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                    Nosotros
+                  </NavLink>
+                  <NavLink to="/sucursales" onClick={closeMenu} className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                    Sucursales
+                  </NavLink>
+                  <NavLink to="/contacto" onClick={closeMenu} className={({ isActive }) => isActive ? "text-wings-500" : "hover:text-wings-500 transition"}>
+                    Contacto
+                  </NavLink>
 
                   <div className="h-px bg-slate-100 my-1" />
 
@@ -82,12 +111,16 @@ export function PublicNavbar() {
                     Panel admin
                   </Link>
 
-                  <button
-                    className="mt-1 w-full px-4 py-2 rounded-full bg-wings-500 hover:bg-wings-400 text-white text-sm font-bold shadow-md transition"
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 w-full px-4 py-2 rounded-full bg-wings-500 hover:bg-wings-400 text-white text-sm font-bold shadow-md transition text-center"
                     onClick={closeMenu}
                   >
                     Pide ahora
-                  </button>
+                  </a>
+
                 </div>
               </div>
             )}
