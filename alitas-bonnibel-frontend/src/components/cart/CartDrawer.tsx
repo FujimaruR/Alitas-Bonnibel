@@ -1,4 +1,5 @@
 import { useCart } from "../../cart/cart.context";
+import { createOrder } from "../../lib/orders";
 
 type Props = {
   open: boolean;
@@ -9,13 +10,22 @@ type Props = {
 export function CartDrawer({ open, onClose, whatsappUrl }: Props) {
   const { items, subtotal, inc, dec, removeItem, clear } = useCart();
 
+  async function handleConfirmOrder() {
+    try {
+      const order = await createOrder(items);
+      alert(`✅ Pedido creado (#${order.id})`);
+      // aquí luego limpiamos carrito
+    } catch (e) {
+      alert("❌ Error al crear el pedido");
+    }
+  }
+
   return (
     <>
       {/* overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/40 transition ${
-          open ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-40 bg-black/40 transition ${open ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={onClose}
       />
 
@@ -129,24 +139,18 @@ export function CartDrawer({ open, onClose, whatsappUrl }: Props) {
                 Vaciar
               </button>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => {
-                  // opcional: cerrar al pedir
-                  onClose();
-                }}
-                className={`
-                  px-4 py-3 rounded-2xl text-center
-                  bg-wings-500 hover:bg-wings-400 text-white font-extrabold
-                  shadow-lg shadow-wings-500/30
-                  hover:scale-[1.02] transition
-                  ${items.length === 0 ? "pointer-events-none opacity-50" : ""}
-                `}
+              <button
+                onClick={handleConfirmOrder}
+                className="
+                  px-4 py-3 rounded-2xl
+                  border-2 border-slate-900/60
+                  bg-transparent text-slate-900 font-extrabold
+                  hover:bg-slate-900 hover:text-white transition
+                  disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-slate-900
+                "
               >
-                Pedir WhatsApp
-              </a>
+                Confirmar Pedido
+              </button>
             </div>
 
             <div className="mt-3 text-[11px] text-slate-500">

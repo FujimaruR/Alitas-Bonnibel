@@ -18,9 +18,16 @@ export default function LoginPage() {
         try {
             const res = await api.post("/auth/login", { email, password });
             const { access_token, user } = res.data;
+            // después de login exitoso:
             localStorage.setItem("access_token", access_token);
             localStorage.setItem("user", JSON.stringify(user));
-            navigate("/dashboard");
+
+            const role = user?.role;
+
+            if (role === "ADMIN") navigate("/dashboard");
+            else if (role === "KITCHEN") navigate("/kitchen");
+            else navigate("/orders"); // WAITER u otros
+
         } catch (err: any) {
             console.error(err);
 
@@ -83,6 +90,20 @@ export default function LoginPage() {
                     >
                         {loading ? "Entrando..." : "Iniciar sesión"}
                     </button>
+                    <button
+                        type="button"
+                        onClick={() => navigate("/")}
+                        className="
+    w-full mt-3 py-2 rounded-lg
+    border border-white/20
+    text-white/80 text-sm font-medium
+    hover:bg-white/5 hover:text-white
+    transition
+  "
+                    >
+                        ← Volver al sitio
+                    </button>
+
                 </form>
             </div>
         </div>

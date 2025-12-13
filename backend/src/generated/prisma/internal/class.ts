@@ -17,10 +17,10 @@ import type * as Prisma from "./prismaNamespace.js"
 
 const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
-  "clientVersion": "7.0.1",
-  "engineVersion": "f09f2815f091dbba658cdcd2264306d88bb5bda6",
+  "clientVersion": "7.1.0",
+  "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "postgresql",
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n}\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\nmodel User {\n  id            Int      @id @default(autoincrement())\n  name          String\n  email         String   @unique\n  password_hash String\n  role          Role\n  created_at    DateTime @default(now())\n\n  orders Order[]\n}\n\nenum Role {\n  ADMIN\n  WAITER\n  KITCHEN\n}\n\nmodel Category {\n  id        Int     @id @default(autoincrement())\n  name      String\n  slug      String  @unique\n  sortOrder Int     @default(0)\n  isActive  Boolean @default(true)\n\n  products Product[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Product {\n  id         Int      @id @default(autoincrement())\n  categoryId Int\n  category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)\n\n  name        String\n  description String?\n  price       Int\n  imageUrl    String\n  badges      String[] @default([])\n  isActive    Boolean  @default(true)\n  sortOrder   Int      @default(0)\n\n  // ✅ lado opuesto para OrderItem.product\n  orderItems OrderItem[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([categoryId])\n  @@index([isActive])\n}\n\nmodel Table {\n  id     Int         @id @default(autoincrement())\n  name   String\n  status TableStatus\n\n  orders Order[]\n}\n\nenum TableStatus {\n  FREE\n  OCCUPIED\n  RESERVED\n}\n\nmodel Order {\n  id             Int           @id @default(autoincrement())\n  type           OrderType\n  status         OrderStatus   @default(PENDING)\n  payment_status PaymentStatus @default(UNPAID)\n  total_amount   Float         @default(0)\n  created_at     DateTime      @default(now())\n  closed_at      DateTime?\n\n  table_id Int?\n  table    Table? @relation(fields: [table_id], references: [id])\n\n  created_by_user_id Int\n  created_by         User @relation(fields: [created_by_user_id], references: [id])\n\n  items OrderItem[]\n}\n\nenum OrderType {\n  DINE_IN\n  TAKEOUT\n  DELIVERY\n}\n\nenum OrderStatus {\n  PENDING\n  IN_PREPARATION\n  READY\n  SERVED\n  CANCELLED\n}\n\nenum PaymentStatus {\n  UNPAID\n  PAID\n  REFUNDED\n}\n\nmodel OrderItem {\n  id         Int     @id @default(autoincrement())\n  quantity   Int\n  unit_price Float\n  subtotal   Float\n  notes      String?\n\n  order_id Int\n  order    Order @relation(fields: [order_id], references: [id])\n\n  product_id Int\n  product    Product @relation(fields: [product_id], references: [id])\n\n  sauces OrderItemSauce[]\n}\n\n// Opcional: salsas\nmodel Sauce {\n  id          Int    @id @default(autoincrement())\n  name        String\n  spicy_level Int\n\n  order_items OrderItemSauce[]\n}\n\n// Tabla pivote N a N entre OrderItem y Sauce\nmodel OrderItemSauce {\n  order_item_id Int\n  sauce_id      Int\n\n  order_item OrderItem @relation(fields: [order_item_id], references: [id])\n  sauce      Sauce     @relation(fields: [sauce_id], references: [id])\n\n  @@id([order_item_id, sauce_id])\n}\n",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n}\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\nmodel User {\n  id            Int      @id @default(autoincrement())\n  name          String\n  email         String   @unique\n  password_hash String\n  role          Role\n  created_at    DateTime @default(now())\n\n  orders Order[]\n}\n\nenum Role {\n  ADMIN\n  WAITER\n  KITCHEN\n}\n\nmodel Category {\n  id        Int     @id @default(autoincrement())\n  name      String\n  slug      String  @unique\n  sortOrder Int     @default(0)\n  isActive  Boolean @default(true)\n\n  products Product[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Product {\n  id         Int      @id @default(autoincrement())\n  categoryId Int\n  category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)\n\n  name        String\n  description String?\n  price       Int\n  imageUrl    String\n  badges      String[] @default([])\n  isActive    Boolean  @default(true)\n  sortOrder   Int      @default(0)\n\n  // ✅ lado opuesto para OrderItem.product\n  orderItems OrderItem[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([categoryId])\n  @@index([isActive])\n}\n\nmodel Table {\n  id     Int         @id @default(autoincrement())\n  name   String\n  status TableStatus\n\n  orders Order[]\n}\n\nenum TableStatus {\n  FREE\n  OCCUPIED\n  RESERVED\n}\n\nmodel Order {\n  id             Int           @id @default(autoincrement())\n  type           OrderType\n  status         OrderStatus   @default(PENDING)\n  payment_status PaymentStatus @default(UNPAID)\n  total_amount   Float         @default(0)\n  created_at     DateTime      @default(now())\n  closed_at      DateTime?\n\n  table_id Int?\n  table    Table? @relation(fields: [table_id], references: [id])\n\n  created_by_user_id Int?\n  created_by         User? @relation(fields: [created_by_user_id], references: [id])\n\n  items OrderItem[]\n}\n\nenum OrderType {\n  DINE_IN\n  TAKEOUT\n  DELIVERY\n}\n\nenum OrderStatus {\n  PENDING\n  IN_PREPARATION\n  READY\n  SERVED\n  CANCELLED\n}\n\nenum PaymentStatus {\n  UNPAID\n  PAID\n  REFUNDED\n}\n\nmodel OrderItem {\n  id         Int     @id @default(autoincrement())\n  quantity   Int\n  unit_price Float\n  subtotal   Float\n  notes      String?\n\n  order_id Int\n  order    Order @relation(fields: [order_id], references: [id])\n\n  product_id Int\n  product    Product @relation(fields: [product_id], references: [id])\n\n  sauces OrderItemSauce[]\n}\n\n// Opcional: salsas\nmodel Sauce {\n  id          Int    @id @default(autoincrement())\n  name        String\n  spicy_level Int\n\n  order_items OrderItemSauce[]\n}\n\n// Tabla pivote N a N entre OrderItem y Sauce\nmodel OrderItemSauce {\n  order_item_id Int\n  sauce_id      Int\n\n  order_item OrderItem @relation(fields: [order_item_id], references: [id])\n  sauce      Sauce     @relation(fields: [sauce_id], references: [id])\n\n  @@id([order_item_id, sauce_id])\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -62,7 +62,7 @@ export interface PrismaClientConstructor {
    * const users = await prisma.user.findMany()
    * ```
    * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   * Read more in our [docs](https://pris.ly/d/client).
    */
 
   new <
@@ -84,7 +84,7 @@ export interface PrismaClientConstructor {
  * const users = await prisma.user.findMany()
  * ```
  * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 
 export interface PrismaClient<
@@ -113,7 +113,7 @@ export interface PrismaClient<
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -125,7 +125,7 @@ export interface PrismaClient<
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -136,7 +136,7 @@ export interface PrismaClient<
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -148,7 +148,7 @@ export interface PrismaClient<
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 

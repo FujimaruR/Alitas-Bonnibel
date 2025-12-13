@@ -1,67 +1,50 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  ParseIntPipe,
-  Query,
-} from '@nestjs/common';
-import { OrdersService } from './orders.service';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto';
-import { PayOrderDto } from './dto/pay-order.dto';
-import { OrderStatus, OrderType } from '../generated/prisma/client';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Query, UseGuards } from "@nestjs/common";
+import { OrdersService } from "./orders.service";
+import { UpdateOrderStatusDto } from "./dto/update-order-status.dto";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { RolesGuard } from "../auth/roles.guard";
+import { Roles } from "../auth/roles.decorator";
 
-@Controller('orders')
+@Controller("orders")
 export class OrdersController {
-  constructor(private readonly ordersService: OrdersService) {}
+  constructor(private readonly service: OrdersService) {}
 
-  @Post()
-  create(@Body() dto: CreateOrderDto) {
-    return this.ordersService.create(dto);
-  }
-
+  // ADMIN: lista general con filtros
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles("ADMIN")
   @Get()
-  findAll(
-    @Query('status') status?: OrderStatus,
-    @Query('type') type?: OrderType,
-    @Query('tableId') tableId?: string,
+  list(
+    @Query("status") status?: string,
+    @Query("type") type?: string,
+    @Query("from") from?: string,
+    @Query("to") to?: string,
+    @Query("limit") limit?: string
   ) {
-    return this.ordersService.findAll({
+    return this.service.findAll({
       status,
       type,
-      tableId: tableId ? Number(tableId) : undefined,
+      from,
+      to,
+      limit: limit ? Number(limit) : 50,
     });
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.ordersService.findOne(id);
+  // KITCHEN (y ADMIN): tablero cocina
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles("KITCHEN", "ADMIN")
+  @Get("kitchen")
+  kitchenBoard() {
+    return this.service.findKitchenBoard();
   }
 
-  @Patch(':id/status')
+  // KITCHEN (y ADMIN): actualizar estatus
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles("KITCHEN", "ADMIN")
+  @Patch(":id/status")
   updateStatus(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateOrderStatusDto,
+    @Param("id", ParseIntPipe) id: number,
+    @Body() dto: UpdateOrderStatusDto
   ) {
-    return this.ordersService.updateStatus(id, dto);
-  }
-
-  @Patch(':id/pay')
-  pay(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: PayOrderDto,
-  ) {
-    return this.ordersService.pay(id, dto);
-  }
-
-  // Si quisieras borrar órdenes (no siempre se recomienda)
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    // aquí podrías implementar this.ordersService.remove(id)
-    return { message: 'Not implemented yet' };
+    return this.service.updateStatus(id, dto);
   }
 }

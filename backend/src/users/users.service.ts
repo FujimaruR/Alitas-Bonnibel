@@ -121,4 +121,9 @@ export class UsersService {
 
     return this.sanitizeUser(deleted);
   }
+
+    async countUsers() {
+    return this.prisma.user.count();
+  }
+
 }

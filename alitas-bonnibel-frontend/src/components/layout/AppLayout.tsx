@@ -11,6 +11,12 @@ export function AppLayout({ children }: AppLayoutProps) {
   const userStr = localStorage.getItem("user");
   const user = userStr ? JSON.parse(userStr) : null;
 
+  const role = user?.role as string | undefined;
+
+  const isAdmin = role === "ADMIN";
+  const isKitchen = role === "KITCHEN";
+
+
   function handleLogout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
@@ -26,31 +32,61 @@ export function AppLayout({ children }: AppLayoutProps) {
         </div>
 
         <nav className="flex-1 text-sm space-y-2">
-          <button
-            className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5"
-            onClick={() => navigate("/dashboard")}
-          >
-            Dashboard
-          </button>
-          <button
-            className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5"
-            onClick={() => navigate("/menu")}
-          >
-            Menú
-          </button>
-          <button
-            className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5"
-            onClick={() => navigate("/tables")}
-          >
-            Mesas
-          </button>
-          <button
-            className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5"
-            onClick={() => navigate("/orders")}
-          >
-            Órdenes
-          </button>
+          {/* ADMIN */}
+          {isAdmin && (
+            <>
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/dashboard")}>
+                Dashboard
+              </button>
+
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/menu-admin")}>
+                Menú (Admin)
+              </button>
+
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/tables")}>
+                Mesas
+              </button>
+
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/orders")}>
+                Órdenes
+              </button>
+
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/kitchen")}>
+                Cocina
+              </button>
+
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/users")}>
+                Usuarios
+              </button>
+            </>
+          )}
+
+          {/* KITCHEN */}
+          {isKitchen && (
+            <>
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/kitchen")}>
+                Cocina
+              </button>
+
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/orders")}>
+                Órdenes (solo lectura)
+              </button>
+            </>
+          )}
+
+          {/* Otros roles (opcional) */}
+          {!isAdmin && !isKitchen && (
+            <>
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/orders")}>
+                Órdenes
+              </button>
+              <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/tables")}>
+                Mesas
+              </button>
+            </>
+          )}
         </nav>
+
 
         {user && (
           <div className="mt-6 border-t border-white/5 pt-3 text-xs text-slate-300">

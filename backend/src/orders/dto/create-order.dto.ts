@@ -1,29 +1,24 @@
-import {
-  IsArray,
-  IsEnum,
-  IsInt,
-  IsOptional,
-  ValidateNested,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import {
-  OrderType,
-} from '../../generated/prisma/client';
-import { CreateOrderItemDto } from './create-order-item.dto';
+import { IsArray, IsEnum, IsInt, IsOptional, IsString, Min } from "class-validator";
+
+export type OrderType = "DINE_IN" | "TAKEOUT" | "DELIVERY";
+
+export class CreateOrderItemDto {
+  @IsInt()
+  productId: number;
+
+  @IsInt()
+  @Min(1)
+  quantity: number;
+}
 
 export class CreateOrderDto {
-  @IsEnum(OrderType)
+  @IsEnum(["DINE_IN", "TAKEOUT", "DELIVERY"])
   type: OrderType;
 
   @IsOptional()
-  @IsInt()
-  table_id?: number; // solo para DINE_IN
-
-  @IsInt()
-  created_by_user_id: number; // luego vendrá del JWT
+  @IsString()
+  customerName?: string;
 
   @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => CreateOrderItemDto)
   items: CreateOrderItemDto[];
 }

@@ -89,8 +89,9 @@ model Order {
   table_id           Int?
   table              Table?        @relation(fields: [table_id], references: [id])
 
-  created_by_user_id Int
-  created_by         User          @relation(fields: [created_by_user_id], references: [id])
+  created_by_user_id Int?
+  created_by         User? @relation(fields: [created_by_user_id], references: [id])
+
 
   items              OrderItem[]
 }
