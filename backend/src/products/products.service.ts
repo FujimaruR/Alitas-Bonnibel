@@ -10,30 +10,23 @@ interface FindAllOptions {
 
 @Injectable()
 export class ProductsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(createProductDto: CreateProductDto) {
-    // 1) Validar que exista la categoría
-    const category = await this.prisma.category.findUnique({
-      where: { id: createProductDto.category_id },
-    });
-
-    if (!category) {
-      throw new NotFoundException('Category not found');
-    }
-
-    // 2) Crear el producto
     return this.prisma.product.create({
       data: {
+        categoryId: createProductDto.categoryId,
         name: createProductDto.name,
         description: createProductDto.description,
         price: createProductDto.price,
-        spicy_level: createProductDto.spicy_level,
-        is_available: createProductDto.is_available ?? true,
-        category_id: createProductDto.category_id,
+        imageUrl: createProductDto.imageUrl,
+        badges: createProductDto.badges ?? [],
+        isActive: true,
+        sortOrder: 0,
       },
     });
   }
+
 
   async findAll(options: FindAllOptions = {}) {
     const where: any = {};
@@ -75,9 +68,9 @@ export class ProductsService {
     await this.findOne(id);
 
     // Si viene un category_id nuevo, validar que exista esa categoría
-    if (updateProductDto.category_id !== undefined) {
+    if (updateProductDto.categoryId !== undefined) {
       const category = await this.prisma.category.findUnique({
-        where: { id: updateProductDto.category_id },
+        where: { id: updateProductDto.categoryId },
       });
 
       if (!category) {

@@ -3,15 +3,45 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+async function makeUniqueSlug(prisma: any, base: string) {
+  let slug = base;
+  let i = 2;
+  while (await prisma.category.findUnique({ where: { slug } })) {
+    slug = `${base}-${i++}`;
+  }
+  return slug;
+}
+
+
 @Injectable()
 export class CategoriesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(createCategoryDto: CreateCategoryDto) {
-    return this.prisma.category.create({
-      data: createCategoryDto,
-    });
-  }
+  const base = createCategoryDto.slug?.trim() || slugify(createCategoryDto.name);
+  const slug = await makeUniqueSlug(this.prisma, base);
+
+  return this.prisma.category.create({
+    data: {
+      name: createCategoryDto.name,
+      slug,
+      sortOrder: createCategoryDto.sortOrder ?? 0,
+      isActive: createCategoryDto.isActive ?? true,
+    },
+  });
+}
+
 
   async findAll() {
     return this.prisma.category.findMany({

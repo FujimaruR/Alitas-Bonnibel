@@ -320,7 +320,7 @@ export type OrderItemCreateInput = {
   subtotal: number
   notes?: string | null
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
-  product: Prisma.ProductCreateNestedOneWithoutOrder_itemsInput
+  product: Prisma.ProductCreateNestedOneWithoutOrderItemsInput
   sauces?: Prisma.OrderItemSauceCreateNestedManyWithoutOrder_itemInput
 }
 
@@ -341,7 +341,7 @@ export type OrderItemUpdateInput = {
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
-  product?: Prisma.ProductUpdateOneRequiredWithoutOrder_itemsNestedInput
+  product?: Prisma.ProductUpdateOneRequiredWithoutOrderItemsNestedInput
   sauces?: Prisma.OrderItemSauceUpdateManyWithoutOrder_itemNestedInput
 }
 
@@ -607,7 +607,7 @@ export type OrderItemCreateWithoutOrderInput = {
   unit_price: number
   subtotal: number
   notes?: string | null
-  product: Prisma.ProductCreateNestedOneWithoutOrder_itemsInput
+  product: Prisma.ProductCreateNestedOneWithoutOrderItemsInput
   sauces?: Prisma.OrderItemSauceCreateNestedManyWithoutOrder_itemInput
 }
 
@@ -653,7 +653,7 @@ export type OrderItemCreateWithoutSaucesInput = {
   subtotal: number
   notes?: string | null
   order: Prisma.OrderCreateNestedOneWithoutItemsInput
-  product: Prisma.ProductCreateNestedOneWithoutOrder_itemsInput
+  product: Prisma.ProductCreateNestedOneWithoutOrderItemsInput
 }
 
 export type OrderItemUncheckedCreateWithoutSaucesInput = {
@@ -688,7 +688,7 @@ export type OrderItemUpdateWithoutSaucesInput = {
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.OrderUpdateOneRequiredWithoutItemsNestedInput
-  product?: Prisma.ProductUpdateOneRequiredWithoutOrder_itemsNestedInput
+  product?: Prisma.ProductUpdateOneRequiredWithoutOrderItemsNestedInput
 }
 
 export type OrderItemUncheckedUpdateWithoutSaucesInput = {
@@ -752,7 +752,7 @@ export type OrderItemUpdateWithoutOrderInput = {
   unit_price?: Prisma.FloatFieldUpdateOperationsInput | number
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  product?: Prisma.ProductUpdateOneRequiredWithoutOrder_itemsNestedInput
+  product?: Prisma.ProductUpdateOneRequiredWithoutOrderItemsNestedInput
   sauces?: Prisma.OrderItemSauceUpdateManyWithoutOrder_itemNestedInput
 }
 

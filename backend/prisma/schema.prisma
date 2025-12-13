@@ -27,25 +27,41 @@ enum Role {
 }
 
 model Category {
-  id          Int       @id @default(autoincrement())
-  name        String
-  description String?
-  products    Product[]
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+
+  products  Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Product {
-  id           Int       @id @default(autoincrement())
-  name         String
-  description  String?
-  price        Float
-  spicy_level  Int
-  is_available Boolean   @default(true)
+  id          Int      @id @default(autoincrement())
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
 
-  category_id  Int
-  category     Category  @relation(fields: [category_id], references: [id])
+  name        String
+  description String?
+  price       Int
+  imageUrl    String
+  badges      String[] @default([])
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
 
-  order_items  OrderItem[]
+  // ✅ lado opuesto para OrderItem.product
+  orderItems  OrderItem[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([isActive])
 }
+
 
 model Table {
   id     Int          @id @default(autoincrement())
