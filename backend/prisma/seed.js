@@ -1,6 +1,7 @@
 require("dotenv/config");
 const { PrismaClient } = require("@prisma/client");
 const { PrismaPg } = require("@prisma/adapter-pg");
+import * as argon2 from "argon2";
 
 const url = process.env.DATABASE_URL;
 if (!url) throw new Error("DATABASE_URL no está definida");
@@ -10,6 +11,25 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
+  const email = "admin@example.com";
+
+  const existing = await prisma.user.findUnique({ where: { email } });
+
+  if (!existing) {
+    await prisma.user.create({
+      data: {
+        name: "Admin",
+        email,
+        password_hash: await argon2.hash("secret123"),
+        role: "ADMIN",
+      },
+    });
+    console.log("✅ Admin creado:", email);
+  } else {
+    console.log("ℹ️ Admin ya existe:", email);
+  }
+
+
   const categories = [
     { name: "Alitas", slug: "alitas", sortOrder: 1 },
     { name: "Boneless", slug: "boneless", sortOrder: 2 },
