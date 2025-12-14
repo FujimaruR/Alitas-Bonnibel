@@ -21,7 +21,6 @@ type Props = {
 };
 
 export function WaveSeparatorGradient({
-  id,
   from,
   to,
   bottomColor,

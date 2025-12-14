@@ -7,7 +7,7 @@ type Props = {
   whatsappUrl: string;
 };
 
-export function CartDrawer({ open, onClose, whatsappUrl }: Props) {
+export function CartDrawer({ open, onClose }: Props) {
   const { items, subtotal, inc, dec, removeItem, clear } = useCart();
 
   async function handleConfirmOrder() {

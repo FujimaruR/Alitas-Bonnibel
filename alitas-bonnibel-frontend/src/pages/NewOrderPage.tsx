@@ -163,7 +163,6 @@ export default function NewOrderPage() {
 
         setSubmitting(true);
         try {
-            const res = await api.post("/orders", payload);
             // si quieres, puedes navegar a /orders y resaltar la nueva
             navigate("/orders");
             // o: navigate(`/orders/${res.data.id}`) si tienes esa ruta

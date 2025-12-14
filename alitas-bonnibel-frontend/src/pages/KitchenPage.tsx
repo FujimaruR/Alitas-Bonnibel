@@ -36,7 +36,7 @@ export default function KitchenPage() {
 
             // Detectar nuevas (opcional)
             const currentIds = new Set<number>(data.map((o: any) => o.id));
-            if (!loading) {
+            /*if (!loading) {
                 let hasNew = false;
                 for (const id of currentIds) {
                     if (!lastIdsRef.current.has(id)) {
@@ -45,7 +45,7 @@ export default function KitchenPage() {
                     }
                 }
                 // Aquí luego podemos meter toast/sonido si hasNew === true
-            }
+            }*/
             lastIdsRef.current = currentIds;
 
             setOrders(data);
