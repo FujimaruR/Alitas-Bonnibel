@@ -9,6 +9,6 @@ export default defineConfig({
   },
   datasource: {
     // Aquí va ahora la URL que antes estaba en el schema
-    url: env('DATABASE_URL'),
+    url: process.env.DATABASE_URL!,
   },
 });
