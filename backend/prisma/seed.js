@@ -1,7 +1,7 @@
-require("dotenv/config");
-const { PrismaClient } = require("@prisma/client");
-const { PrismaPg } = require("@prisma/adapter-pg");
-import * as argon2 from "argon2";
+// prisma/seed.js  (ESM)
+import argon2 from "argon2";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "../src/generated/prisma/client/index.js";
 
 const url = process.env.DATABASE_URL;
 if (!url) throw new Error("DATABASE_URL no está definida");
@@ -11,11 +11,11 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
+  // 1) Admin
   const email = "admin@example.com";
+  const existingAdmin = await prisma.user.findUnique({ where: { email } });
 
-  const existing = await prisma.user.findUnique({ where: { email } });
-
-  if (!existing) {
+  if (!existingAdmin) {
     await prisma.user.create({
       data: {
         name: "Admin",
@@ -29,7 +29,7 @@ async function main() {
     console.log("ℹ️ Admin ya existe:", email);
   }
 
-
+  // 2) Categorías
   const categories = [
     { name: "Alitas", slug: "alitas", sortOrder: 1 },
     { name: "Boneless", slug: "boneless", sortOrder: 2 },
@@ -49,6 +49,7 @@ async function main() {
   const allCats = await prisma.category.findMany({ select: { id: true, slug: true } });
   const bySlug = Object.fromEntries(allCats.map((x) => [x.slug, x.id]));
 
+  // 3) Productos
   const products = [
     {
       categoryId: bySlug["combos"],
@@ -59,6 +60,7 @@ async function main() {
         "https://images.unsplash.com/photo-1604908176997-125f25cc500f?auto=format&fit=crop&w=1400&q=80",
       badges: ["Más pedido", "2 sabores"],
       sortOrder: 1,
+      isFeatured: true,
     },
     {
       categoryId: bySlug["alitas"],
@@ -69,6 +71,7 @@ async function main() {
         "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1400&q=80",
       badges: ["2 salsas"],
       sortOrder: 1,
+      isFeatured: true,
     },
   ].filter((p) => Number.isFinite(p.categoryId));
 
@@ -88,10 +91,13 @@ async function main() {
           badges: p.badges,
           isActive: true,
           sortOrder: p.sortOrder,
+          isFeatured: p.isFeatured,
         },
       });
     } else {
-      await prisma.product.create({ data: { ...p, isActive: true } });
+      await prisma.product.create({
+        data: { ...p, isActive: true },
+      });
     }
   }
 
@@ -100,7 +106,7 @@ async function main() {
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error("❌ Seed error:", e);
     process.exit(1);
   })
   .finally(async () => {
