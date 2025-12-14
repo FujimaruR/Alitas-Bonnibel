@@ -7,6 +7,8 @@ import { OrdersModule } from './orders/orders.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PublicMenuModule } from "./public-menu/public-menu.module";
+import { AdminMenuModule } from "./admin-menu/admin-menu.module";
+import { PublicModule } from "./public/public.module";
 
 
 @Module({
@@ -19,6 +21,8 @@ import { PublicMenuModule } from "./public-menu/public-menu.module";
     UsersModule,
     AuthModule,
     PublicMenuModule,
+    AdminMenuModule,
+    PublicModule,
   ],
 })
 export class AppModule {}

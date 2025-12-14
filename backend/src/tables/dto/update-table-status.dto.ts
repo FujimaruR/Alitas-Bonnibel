@@ -1,7 +1,6 @@
-import { IsEnum } from 'class-validator';
-import { TableStatus } from '../../generated/prisma/client';
+import { IsEnum } from "class-validator";
 
 export class UpdateTableStatusDto {
-  @IsEnum(TableStatus)
-  status: TableStatus;
+  @IsEnum(["FREE", "OCCUPIED", "RESERVED"])
+  status: "FREE" | "OCCUPIED" | "RESERVED";
 }

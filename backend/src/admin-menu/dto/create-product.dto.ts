@@ -1,4 +1,4 @@
-import { IsArray, IsInt, IsOptional, IsBoolean, IsString, Min } from "class-validator";
+import { IsArray, IsBoolean, IsInt, IsOptional, IsString, Min } from "class-validator";
 
 export class CreateProductDto {
   @IsInt()
@@ -20,8 +20,16 @@ export class CreateProductDto {
 
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
   badges?: string[];
+
+  @IsOptional()
+  @IsBoolean()
+  isActive?: boolean;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  sortOrder?: number;
 
   @IsOptional()
   @IsBoolean()

@@ -50,6 +50,7 @@ model Product {
   imageUrl    String
   badges      String[] @default([])
   isActive    Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
   sortOrder   Int      @default(0)
 
   // ✅ lado opuesto para OrderItem.product
@@ -60,6 +61,7 @@ model Product {
 
   @@index([categoryId])
   @@index([isActive])
+  @@index([isFeatured])
 }
 
 
@@ -151,3 +153,4 @@ model OrderItemSauce {
 
   @@id([order_item_id, sauce_id])
 }
+

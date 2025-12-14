@@ -1,11 +1,10 @@
-import { IsEnum, IsString, MaxLength } from 'class-validator';
-import { TableStatus } from '../../generated/prisma/client';
+import { IsEnum, IsOptional, IsString } from "class-validator";
 
 export class CreateTableDto {
   @IsString()
-  @MaxLength(50)
   name: string;
 
-  @IsEnum(TableStatus)
-  status: TableStatus;
+  @IsOptional()
+  @IsEnum(["FREE", "OCCUPIED", "RESERVED"])
+  status?: "FREE" | "OCCUPIED" | "RESERVED";
 }

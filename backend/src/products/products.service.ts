@@ -1,7 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
 
 interface FindAllOptions {
   categoryId?: number;
@@ -10,40 +10,40 @@ interface FindAllOptions {
 
 @Injectable()
 export class ProductsService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createProductDto: CreateProductDto) {
     return this.prisma.product.create({
       data: {
         categoryId: createProductDto.categoryId,
         name: createProductDto.name,
-        description: createProductDto.description,
+        description: createProductDto.description ?? null,
         price: createProductDto.price,
         imageUrl: createProductDto.imageUrl,
         badges: createProductDto.badges ?? [],
         isActive: true,
+        isFeatured: false, // ✅ opcional, pero explícito
         sortOrder: 0,
       },
     });
   }
 
-
   async findAll(options: FindAllOptions = {}) {
     const where: any = {};
 
     if (options.categoryId !== undefined) {
-      where.category_id = options.categoryId;
+      where.categoryId = options.categoryId; // ✅
     }
 
     if (options.onlyAvailable === true) {
-      where.is_available = true;
+      where.isActive = true; // ✅
     }
 
     return this.prisma.product.findMany({
       where,
-      orderBy: { id: 'asc' },
+      orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
       include: {
-        category: true, // para que el frontend tenga nombre de categoría
+        category: true,
       },
     });
   }
@@ -51,45 +51,31 @@ export class ProductsService {
   async findOne(id: number) {
     const product = await this.prisma.product.findUnique({
       where: { id },
-      include: {
-        category: true,
-      },
+      include: { category: true },
     });
 
-    if (!product) {
-      throw new NotFoundException('Product not found');
-    }
-
+    if (!product) throw new NotFoundException("Product not found");
     return product;
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
-    // Validar que el producto exista
     await this.findOne(id);
 
-    // Si viene un category_id nuevo, validar que exista esa categoría
     if (updateProductDto.categoryId !== undefined) {
       const category = await this.prisma.category.findUnique({
         where: { id: updateProductDto.categoryId },
       });
-
-      if (!category) {
-        throw new NotFoundException('Category not found');
-      }
+      if (!category) throw new NotFoundException("Category not found");
     }
 
     return this.prisma.product.update({
       where: { id },
-      data: updateProductDto,
+      data: updateProductDto, // ✅ aquí sí pasa isFeatured
     });
   }
 
   async remove(id: number) {
-    // Validar que exista
     await this.findOne(id);
-
-    return this.prisma.product.delete({
-      where: { id },
-    });
+    return this.prisma.product.delete({ where: { id } });
   }
 }

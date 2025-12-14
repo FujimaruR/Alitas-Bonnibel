@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
-import { TablesService } from './tables.service';
-import { TablesController } from './tables.controller';
+import { Module } from "@nestjs/common";
+import { PrismaModule } from "../prisma/prisma.module";
+import { TablesController } from "./tables.controller";
+import { TablesService } from "./tables.service";
 
 @Module({
+  imports: [PrismaModule],
   controllers: [TablesController],
   providers: [TablesService],
-  exports: [TablesService], // lo exportamos por si Orders lo necesita
+  exports: [TablesService],
 })
 export class TablesModule {}

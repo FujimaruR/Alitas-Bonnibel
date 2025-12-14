@@ -31,11 +31,15 @@ export function MenuProductCard({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
 
-        <div className="absolute bottom-3 right-3">
-          <span className="px-3 py-1.5 rounded-full bg-white/90 text-slate-900 text-sm font-extrabold shadow">
-            ${price}
-          </span>
-        </div>
+        {badges.length > 0 && (
+          <div className="absolute top-3 left-3">
+            {badges.map((b) => (
+              <span key={b} className="px-3 py-1.5 rounded-full bg-wings-200 text-slate-900 text-sm font-extrabold shadow">
+                {b}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="p-5">
@@ -47,17 +51,13 @@ export function MenuProductCard({
           </p>
         )}
 
-        {badges.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {badges.map((b) => (
-              <span key={b} className="px-3 py-1 rounded-full bg-wings-100 text-[11px] font-bold text-slate-900">
-                {b}
-              </span>
-            ))}
-          </div>
-        )}
-
         <div className="mt-4 flex items-center justify-between">
+
+
+          <span className="px-3 py-1 rounded-full bg-wings-100 font-bold text-slate-900">
+            ${price}
+          </span>
+
           <button
             className="px-4 py-2 rounded-full border-2 border-wings-500 text-wings-500 font-extrabold text-sm bg-transparent hover:bg-wings-500 hover:text-white transition"
             type="button"
@@ -68,8 +68,6 @@ export function MenuProductCard({
           >
             Agregar
           </button>
-
-          <span className="text-xs text-slate-500">Carrito</span>
         </div>
       </div>
     </article>

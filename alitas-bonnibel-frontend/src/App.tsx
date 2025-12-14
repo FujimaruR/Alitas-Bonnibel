@@ -10,6 +10,9 @@ import ContactoPage from "./pages/ContactoPage";
 import OrdersPage from "./pages/OrdersPage";
 import KitchenPage from "./pages/KitchenPage";
 import UsersPage from "./pages/UsersPage";
+import MenuAdminPage from "./pages/MenuAdminPage";
+import TablesPage from "./pages/TablesPage";
+import NewOrderPage from "./pages/NewOrderPage";
 
 function PrivateRoute({ children }: { children: ReactElement }) {
   const token = localStorage.getItem("access_token");
@@ -68,6 +71,34 @@ export default function App() {
           </PrivateRoute>
         }
       />
+
+      <Route
+        path="/menu-admin"
+        element={
+          <PrivateRoute>
+            <MenuAdminPage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/tables"
+        element={
+          <PrivateRoute>
+            <TablesPage />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/orders/new"
+        element={
+          <PrivateRoute>
+            <NewOrderPage />
+          </PrivateRoute>
+        }
+      />
+
 
       {/* Cualquier otra ruta manda a home */}
       <Route path="*" element={<Navigate to="/" replace />} />

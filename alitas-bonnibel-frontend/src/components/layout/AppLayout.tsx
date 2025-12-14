@@ -51,6 +51,13 @@ export function AppLayout({ children }: AppLayoutProps) {
                 Órdenes
               </button>
 
+              <button
+                className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5"
+                onClick={() => navigate("/orders/new")}
+              >
+                Nueva Orden
+              </button>
+
               <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/kitchen")}>
                 Cocina
               </button>
@@ -83,6 +90,13 @@ export function AppLayout({ children }: AppLayoutProps) {
               <button className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" onClick={() => navigate("/tables")}>
                 Mesas
               </button>
+              <button
+                className="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5"
+                onClick={() => navigate("/orders/new")}
+              >
+                Nueva Orden
+              </button>
+
             </>
           )}
         </nav>

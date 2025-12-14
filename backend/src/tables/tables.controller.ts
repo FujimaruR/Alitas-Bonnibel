@@ -1,46 +1,47 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
-  Patch,
+  Get,
+  Param,
   ParseIntPipe,
-} from '@nestjs/common';
-import { TablesService } from './tables.service';
-import { CreateTableDto } from './dto/create-table.dto';
-import { UpdateTableStatusDto } from './dto/update-table-status.dto';
+  Patch,
+  Post,
+  UseGuards,
+} from "@nestjs/common";
+import { TablesService } from "./tables.service";
+import { CreateTableDto } from "./dto/create-table.dto";
+import { UpdateTableStatusDto } from "./dto/update-table-status.dto";
+import { JwtAuthGuard } from "../auth/jwt-auth.guard";
+import { RolesGuard } from "../auth/roles.guard";
+import { Roles } from "../auth/roles.decorator";
 
-@Controller('tables')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles("ADMIN", "WAITER")
+@Controller("tables")
 export class TablesController {
-  constructor(private readonly tablesService: TablesService) {}
-
-  @Post()
-  create(@Body() createTableDto: CreateTableDto) {
-    return this.tablesService.create(createTableDto);
-  }
+  constructor(private readonly service: TablesService) {}
 
   @Get()
   findAll() {
-    return this.tablesService.findAll();
+    return this.service.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.tablesService.findOne(id);
+  @Post()
+  create(@Body() dto: CreateTableDto) {
+    return this.service.create(dto);
   }
 
-  @Patch(':id/status')
+  @Patch(":id/status")
   updateStatus(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateTableStatusDto,
+    @Param("id", ParseIntPipe) id: number,
+    @Body() dto: UpdateTableStatusDto
   ) {
-    return this.tablesService.updateStatus(id, dto);
+    return this.service.updateStatus(id, dto);
   }
 
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.tablesService.remove(id);
+  @Delete(":id")
+  remove(@Param("id", ParseIntPipe) id: number) {
+    return this.service.remove(id);
   }
 }

@@ -1076,6 +1076,7 @@ export const ProductScalarFieldEnum = {
   imageUrl: 'imageUrl',
   badges: 'badges',
   isActive: 'isActive',
+  isFeatured: 'isFeatured',
   sortOrder: 'sortOrder',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

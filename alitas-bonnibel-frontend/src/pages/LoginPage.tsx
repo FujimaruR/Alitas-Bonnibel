@@ -6,8 +6,8 @@ import { api } from "../api/client";
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("admin@example.com");
-    const [password, setPassword] = useState("secret123");
+    const [email, setEmail] = useState("@example.com");
+    const [password, setPassword] = useState(".....");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -94,12 +94,12 @@ export default function LoginPage() {
                         type="button"
                         onClick={() => navigate("/")}
                         className="
-    w-full mt-3 py-2 rounded-lg
-    border border-white/20
-    text-white/80 text-sm font-medium
-    hover:bg-white/5 hover:text-white
-    transition
-  "
+                            w-full mt-3 py-2 rounded-lg
+                            border border-white/20
+                            text-white/80 text-sm font-medium
+                            hover:bg-white/5 hover:text-white
+                            transition
+                        "
                     >
                         ← Volver al sitio
                     </button>

@@ -21,4 +21,9 @@ export class CreateOrderDto {
 
   @IsArray()
   items: CreateOrderItemDto[];
+
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  table_id?: number;
 }
