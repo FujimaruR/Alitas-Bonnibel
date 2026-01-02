@@ -156,22 +156,35 @@ export default function NewOrderPage() {
 
         const payload: any = {
             type,
-            items: cart.map((it) => ({ productId: it.product.id, quantity: it.qty })),
+            items: cart.map((it) => ({
+                productId: Number(it.product.id),
+                quantity: Number(it.qty),
+            })),
         };
 
         if (type === "DINE_IN") payload.table_id = Number(tableId);
 
         setSubmitting(true);
         try {
-            // si quieres, puedes navegar a /orders y resaltar la nueva
+            // 👇 ESTE ES EL REQUEST QUE FALTABA
+            const res = await api.post("/orders", payload);
+
+            console.log("✅ Orden creada:", res.data);
+
+            // opcional: limpiar carrito
+            setCart([]);
+
+            // navega después de éxito
             navigate("/orders");
-            // o: navigate(`/orders/${res.data.id}`) si tienes esa ruta
+            // o si tienes id: navigate(`/orders/${res.data.id}`)
         } catch (e: any) {
+            console.error("❌ Error creando orden:", e?.response?.status, e?.response?.data);
             setError(e?.response?.data?.message ?? e?.message ?? "No se pudo crear la orden");
         } finally {
             setSubmitting(false);
         }
     }
+
 
     const tablesForSelect = useMemo(() => {
         // permitir escoger todas, pero visualmente marcamos ocupadas
