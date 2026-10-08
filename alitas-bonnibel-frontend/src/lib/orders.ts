@@ -1,3 +1,4 @@
+import type { CartItem } from '../cart/cart.types';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function toProductId(id: unknown): number {
@@ -12,7 +13,7 @@ function toProductId(id: unknown): number {
   return n;
 }
 
-export async function createOrder(items: any[]) {
+export async function createOrder(items: CartItem[]) {
   const payload = {
     type: "TAKEOUT",
     items: items.map((i) => ({

@@ -71,3 +71,29 @@ export default defineConfig([
   },
 ])
 ```
+
+
+## Implementación de las instrucciones (octubre de 2026)
+
+Se conserva NestJS/Prisma/PostgreSQL y la autenticación existente. El formulario público de contacto ahora indica que es una simulación y muestra un resultado local. El carrito público conserva la creación real de pedidos mediante la API y evita confirmaciones duplicadas; el resultado se registra únicamente después de una respuesta correcta. Las rutas administrativas están traducidas, pero no se instrumentan en la analítica pública. Se reemplazaron tipos any por contratos de pedidos/menú y errores unknown, sin cambiar los contratos del servidor.
+
+La interfaz admite Español / English desde un selector accesible. Se recuerda la elección cuando el navegador permite almacenamiento; sin elección usa un idioma soportado del navegador y español como alternativa. Se actualizan lang, título y descripción. El cambio conserva rutas, filtros, carrito y campos. Los catálogos están en src/site/catalog.json; las claves son estables y las traducciones de contenido existente no modifican identificadores, precios ni bases de negocio. Contenido procedente de la API fuera del catálogo se conserva: nuevos productos o mensajes requieren sus traducciones correspondientes.
+
+### Instalación y verificación
+
+Desde alitas-bonnibel-frontend/:
+
+```powershell
+npm ci
+npm run dev
+npm run lint
+npm run build
+npm run test:i18n
+npm run test:analytics
+```
+
+En entornos Windows donde el empaquetador de la configuración de Vite da Access is denied, se verificó npm run build -- --configLoader runner; esto no modifica el stack ni sus dependencias.
+
+### Analítica y límites
+
+Consulta [contrato, variables, ejecución, persistencia y copias de seguridad](../analytics/README.md). El servicio SQLite y sus pruebas están en analytics/ en la raíz del repositorio. Analítica desactivada hasta configurar su URL. La persistencia de producción, HTTPS y el alojamiento están pendientes de confirmar; no se publicaron cambios ni se contrataron servicios.

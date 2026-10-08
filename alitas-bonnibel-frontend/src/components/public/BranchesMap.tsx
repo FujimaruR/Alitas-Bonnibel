@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr } from '../../site/locale';
 import { Reveal } from "./Reveal";
 
 type Branch = {
@@ -11,6 +12,7 @@ type Props = {
 };
 
 export function BranchesMap({ branches }: Props) {
+  useSiteLocale();
   // Usamos la primera sucursal como centro del mapa
   const mainQuery = branches[0]?.mapQuery ?? "Monterrey Nuevo León";
 
@@ -18,7 +20,7 @@ export function BranchesMap({ branches }: Props) {
     <Reveal>
       <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-lg">
         <iframe
-          title="Mapa sucursales"
+          title={tr("text.fe67dbb8d7")}
           src={`https://www.google.com/maps?q=${encodeURIComponent(
             mainQuery
           )}&output=embed`}

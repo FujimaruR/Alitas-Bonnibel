@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, text as localizeText } from '../../site/locale';
 import type { ReactNode } from "react";
 import { useInView } from "../../hooks/useInView";
 
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export function Reveal({ children, delayMs = 0, className = "" }: Props) {
+  useSiteLocale();
   const { ref, isVisible } = useInView({
     threshold: 0.18,
     rootMargin: "0px 0px -10% 0px",
@@ -16,11 +18,11 @@ export function Reveal({ children, delayMs = 0, className = "" }: Props) {
 
   return (
     <div
-      ref={ref as any}
+      ref={ref}
       className={`anim-reveal ${isVisible ? "is-visible" : ""} ${className}`}
       style={{ animationDelay: `${delayMs}ms` }}
     >
-      {children}
+      {localizeText(children)}
     </div>
   );
 }

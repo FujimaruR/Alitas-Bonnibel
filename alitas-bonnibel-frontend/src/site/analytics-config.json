@@ -1,0 +1,13 @@
+{
+  "paths": [
+    "/",
+    "/menu",
+    "/nosotros",
+    "/sucursales",
+    "/contacto"
+  ],
+  "forms": [
+    "demo-contact",
+    "public-order"
+  ]
+}

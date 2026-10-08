@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr } from '../site/locale';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,6 +22,7 @@ type Featured = {
 };
 
 export default function PublicHomePage() {
+  useSiteLocale();
   const navigate = useNavigate();
 
   const [featured, setFeatured] = useState<Featured[]>([]);
@@ -51,17 +53,10 @@ export default function PublicHomePage() {
         <div className="max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
           {/* Texto */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800 mb-3">
-              WINGS · BONELESS · PAPAS
-            </p>
-            <h1 className="text-3xl md:text-5xl font-display leading-tight mb-4 drop-shadow-sm">
-              Alitas que despiertan
-              <span className="block">el antojo desde la primera vista.</span>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800 mb-3"> {tr("text.8283e635e4")} </p>
+            <h1 className="text-3xl md:text-5xl font-display leading-tight mb-4 drop-shadow-sm"> {tr("text.dc2908faea")} <span className="block">{tr("text.e1c2c15f91")}</span>
             </h1>
-            <p className="text-sm md:text-base text-slate-800/90 max-w-md mb-6">
-              Combos de alitas, boneless y papas con salsas que van desde el
-              “apenas pica” hasta el “¿por qué hice esto?”. Pide, comparte y disfruta.
-            </p>
+            <p className="text-sm md:text-base text-slate-800/90 max-w-md mb-6"> {tr("text.a4e2968ca9")} </p>
 
             <div className="flex flex-wrap gap-3 items-center">
               <a
@@ -77,19 +72,15 @@ export default function PublicHomePage() {
                   hover:scale-105 hover:shadow-[0_24px_60px_rgba(253,58,45,0.55)]
                   animate-soft-pulse
                 "
-              >
-                Ver menú <span className="text-lg">🍗</span>
+              > {tr("text.34d6aa1522")} <span className="text-lg">🍗</span>
               </a>
 
               <button
                 onClick={() => navigate("/menu")}
                 className="px-4 py-2.5 rounded-full bg-white/90 text-slate-900 text-sm font-semibold border border-white/60 hover:bg-white transition"
-              >
-                Pide para llevar
-              </button>
+              > {tr("text.fce155c8e7")} </button>
 
-              <span className="text-xs text-slate-900/80">
-                ⏰ Hoy abrimos de <strong>4:00 pm a 11:00 pm</strong>
+              <span className="text-xs text-slate-900/80"> {tr("text.8270b6bb15")} <strong>{tr("text.40504f5b2d")}</strong>
               </span>
             </div>
           </div>
@@ -111,17 +102,11 @@ export default function PublicHomePage() {
             <div className="absolute inset-0 rounded-3xl ring-1 ring-white/20" />
 
             <div className="relative p-7">
-              <p className="text-xs font-display tracking-[0.22em] uppercase text-wings-100/95">
-                Hoy se antoja
-              </p>
+              <p className="text-xs font-display tracking-[0.22em] uppercase text-wings-100/95"> {tr("text.b0ffd1992b")} </p>
 
-              <h3 className="mt-2 text-2xl md:text-3xl font-display text-white leading-tight">
-                Combo 12 Alitas
-              </h3>
+              <h3 className="mt-2 text-2xl md:text-3xl font-display text-white leading-tight"> {tr("text.9ad6e56c96")} </h3>
 
-              <p className="mt-2 text-sm text-white/85 max-w-md">
-                Elige hasta 2 sabores, papas gajo y un dip cremoso.
-              </p>
+              <p className="mt-2 text-sm text-white/85 max-w-md"> {tr("text.538072c764")} </p>
 
               <div className="mt-5 flex flex-wrap gap-3 items-center">
                 <button
@@ -134,11 +119,9 @@ export default function PublicHomePage() {
                     transition
                     hover:bg-white/15 hover:scale-105
                   "
-                >
-                  Pedir ahora!
-                </button>
+                > {tr("text.21b0ffbe82")} </button>
 
-                <span className="text-xs text-white/70">⏰ Promo limitada</span>
+                <span className="text-xs text-white/70">{tr("text.e2d4d54bd7")}</span>
               </div>
             </div>
           </div>
@@ -157,16 +140,10 @@ export default function PublicHomePage() {
       <section id="sabores" className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-xl md:text-2xl font-display text-slate-900">
-              Salsas y sabores
-            </h2>
-            <p className="text-xs md:text-sm text-slate-500">
-              Del “tranqui” al “¡trae leche por favor!”. Elige tu nivel de picor.
-            </p>
+            <h2 className="text-xl md:text-2xl font-display text-slate-900"> {tr("text.e7d61d7734")} </h2>
+            <p className="text-xs md:text-sm text-slate-500"> {tr("text.18c6d1e001")} </p>
           </div>
-          <span className="hidden md:inline text-xs font-semibold text-wings-400">
-            4+ sabores para combinar
-          </span>
+          <span className="hidden md:inline text-xs font-semibold text-wings-400"> {tr("text.0370105a81")} </span>
         </div>
 
         <FlavorShowcaseGrid />
@@ -179,12 +156,8 @@ export default function PublicHomePage() {
         <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
           <div className="flex items-end justify-between mb-6 gap-4">
             <div>
-              <h2 className="font-display text-2xl md:text-3xl text-slate-900">
-                Los favoritos de la casa
-              </h2>
-              <p className="text-sm text-slate-700 mt-1">
-                Estos se eligen solos. Los marcaste como ⭐ en admin.
-              </p>
+              <h2 className="font-display text-2xl md:text-3xl text-slate-900"> {tr("text.f62dbb2084")} </h2>
+              <p className="text-sm text-slate-700 mt-1"> {tr("text.8eca5ad6c9")} </p>
             </div>
 
             <button
@@ -200,13 +173,12 @@ export default function PublicHomePage() {
                 hover:bg-slate-900 hover:text-white
                 hover:scale-105
               "
-            >
-              Ver menú <span className="text-lg">→</span>
+            > {tr("text.34d6aa1522")} <span className="text-lg">→</span>
             </button>
           </div>
 
           {loadingFeat ? (
-            <div className="text-slate-700">Cargando favoritos…</div>
+            <div className="text-slate-700">{tr("text.88d921e627")}</div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featured.map((p, i) => (
@@ -233,57 +205,31 @@ export default function PublicHomePage() {
       <section id="nosotros" className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 className="text-xl md:text-2xl font-display text-slate-900 mb-3">
-              Alitas con cariño de cocina casera.
-            </h2>
-            <p className="text-sm text-slate-600 mb-3">
-              Alitas Bonnibel nace del amor por compartir comida rica, honesta
-              y bien servida. Nada de porciones tristes: aquí se viene a comer
-              a gusto.
-            </p>
-            <p className="text-sm text-slate-600">
-              Usamos ingredientes frescos, salsas preparadas al momento y
-              combinaciones pensadas para que siempre encuentres algo nuevo
-              que probar.
-            </p>
+            <h2 className="text-xl md:text-2xl font-display text-slate-900 mb-3"> {tr("text.1528599e47")} </h2>
+            <p className="text-sm text-slate-600 mb-3"> {tr("text.8dceacf736")} </p>
+            <p className="text-sm text-slate-600"> {tr("text.65c0cb1fac")} </p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 text-xs">
             <div className="rounded-2xl bg-slate-50 border border-slate-100 p-4">
               <div className="text-2xl mb-1">🍗</div>
-              <div className="font-semibold text-slate-900 mb-1">
-                Porciones generosas
-              </div>
-              <p className="text-slate-500">
-                Combos pensados para compartir (o no compartir, tampoco juzgamos).
-              </p>
+              <div className="font-semibold text-slate-900 mb-1"> {tr("text.21c3c91571")} </div>
+              <p className="text-slate-500"> {tr("text.0cad8ae0c3")} </p>
             </div>
             <div className="rounded-2xl bg-slate-50 border border-slate-100 p-4">
               <div className="text-2xl mb-1">🔥</div>
-              <div className="font-semibold text-slate-900 mb-1">
-                Niveles de picor
-              </div>
-              <p className="text-slate-500">
-                Desde salsas suaves hasta retos para valientes.
-              </p>
+              <div className="font-semibold text-slate-900 mb-1"> {tr("text.f0a40aa36e")} </div>
+              <p className="text-slate-500"> {tr("text.ffaae8dc41")} </p>
             </div>
             <div className="rounded-2xl bg-slate-50 border border-slate-100 p-4">
               <div className="text-2xl mb-1">🚗</div>
-              <div className="font-semibold text-slate-900 mb-1">
-                Para llevar y en sitio
-              </div>
-              <p className="text-slate-500">
-                Pide para tu casa o ven a disfrutar la experiencia completa.
-              </p>
+              <div className="font-semibold text-slate-900 mb-1"> {tr("text.e801cf9536")} </div>
+              <p className="text-slate-500"> {tr("text.1ffeac8b0e")} </p>
             </div>
             <div className="rounded-2xl bg-slate-50 border border-slate-100 p-4">
               <div className="text-2xl mb-1">💛</div>
-              <div className="font-semibold text-slate-900 mb-1">
-                Servicio cercano
-              </div>
-              <p className="text-slate-500">
-                Queremos ser “tu lugar de confianza” para alitas.
-              </p>
+              <div className="font-semibold text-slate-900 mb-1"> {tr("text.696cb30189")} </div>
+              <p className="text-slate-500"> {tr("text.b880d25e89")} </p>
             </div>
           </div>
         </div>

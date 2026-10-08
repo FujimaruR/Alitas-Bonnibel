@@ -1,0 +1,10 @@
+
+# Analytics runtime data and private environment
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+analytics/data/

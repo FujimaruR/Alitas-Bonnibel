@@ -1,3 +1,6 @@
+import { errorMessage } from '../lib/errors';
+import type { Order } from '../types/orders';
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../site/locale';
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api/client";
 import { useNavigate } from "react-router-dom";
@@ -6,14 +9,15 @@ import { AppLayout } from "../components/layout/AppLayout";
 type DashboardSummary = {
   today: { orders: number; revenue: number; avgTicket: number };
   statusCounts: Record<string, number>;
-  recentOrders: any[];
+  recentOrders: Order[];
 };
 
 function money(n: number) {
-  return `$${Math.round(n).toLocaleString("es-MX")}`;
+  return `$${Math.round(n).toLocaleString(document.documentElement.lang === "en" ? "en-US" : "es-MX")}`;
 }
 
 export default function DashboardPage() {
+  useSiteLocale();
   const navigate = useNavigate();
   const [data, setData] = useState<DashboardSummary | null>(null);
   const [loading, setLoading] = useState(true);
@@ -24,8 +28,8 @@ export default function DashboardPage() {
       setError(null);
       const res = await api.get("/orders/dashboard");
       setData(res.data);
-    } catch (e: any) {
-      setError(e?.response?.data?.message ?? e?.message ?? "Error cargando dashboard");
+    } catch (e: unknown) {
+      setError(errorMessage(e, "Error cargando dashboard"));
     } finally {
       setLoading(false);
     }
@@ -53,51 +57,45 @@ export default function DashboardPage() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-wings-100">Dashboard</h1>
-            <p className="text-sm text-slate-300 mt-2">
-              Resumen de hoy. Auto-refresh cada 5s.
-            </p>
+            <h1 className="text-3xl font-extrabold text-wings-100">{tr("text.d87f47b47e")}</h1>
+            <p className="text-sm text-slate-300 mt-2"> {tr("text.159ac99bae")} </p>
           </div>
 
           <div className="flex gap-3">
             <button
               onClick={() => navigate("/kitchen")}
               className="px-4 py-2 rounded-xl bg-wings-500 hover:bg-wings-400 font-extrabold text-sm transition"
-            >
-              Ir a Cocina
-            </button>
+            > {tr("text.b357b80598")} </button>
             <button
               onClick={load}
               className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 font-extrabold text-sm transition"
-            >
-              Recargar
-            </button>
+            > {tr("text.9d2c9d8010")} </button>
           </div>
         </div>
 
         {loading ? (
-          <div className="py-10 text-slate-300">Cargando…</div>
+          <div className="py-10 text-slate-300">{tr("text.6b416d9c40")}</div>
         ) : error ? (
           <div className="py-10">
-            <div className="text-red-300 font-bold">Error</div>
-            <div className="text-slate-300 text-sm mt-2">{error}</div>
+            <div className="text-red-300 font-bold">{tr("text.7f2f6a15cf")}</div>
+            <div className="text-slate-300 text-sm mt-2">{localizeText(error)}</div>
           </div>
         ) : !data ? null : (
           <>
             {/* KPIs */}
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-2xl bg-panel-card border border-white/10 p-5">
-                <div className="text-xs text-white/60">Órdenes hoy</div>
-                <div className="mt-2 text-3xl font-extrabold text-white">{kpis.orders}</div>
+                <div className="text-xs text-white/60">{tr("text.8d63114771")}</div>
+                <div className="mt-2 text-3xl font-extrabold text-white">{localizeText(kpis.orders)}</div>
               </div>
 
               <div className="rounded-2xl bg-panel-card border border-white/10 p-5">
-                <div className="text-xs text-white/60">Ventas hoy</div>
+                <div className="text-xs text-white/60">{tr("text.b4e2897b8e")}</div>
                 <div className="mt-2 text-3xl font-extrabold text-white">{money(kpis.revenue)}</div>
               </div>
 
               <div className="rounded-2xl bg-panel-card border border-white/10 p-5">
-                <div className="text-xs text-white/60">Ticket promedio</div>
+                <div className="text-xs text-white/60">{tr("text.30a64ac7b2")}</div>
                 <div className="mt-2 text-3xl font-extrabold text-white">{money(kpis.avg)}</div>
               </div>
             </div>
@@ -112,9 +110,9 @@ export default function DashboardPage() {
                 ["CANCELLED", "Canceladas"],
               ].map(([key, label]) => (
                 <div key={key} className="rounded-2xl bg-panel-card border border-white/10 p-4">
-                  <div className="text-xs text-white/60">{label}</div>
+                  <div className="text-xs text-white/60">{localizeText(label)}</div>
                   <div className="mt-2 text-2xl font-extrabold text-white">
-                    {status[key] ?? 0}
+                    {localizeText(status[key] ?? 0)}
                   </div>
                 </div>
               ))}
@@ -123,56 +121,51 @@ export default function DashboardPage() {
             {/* Recent orders */}
             <div className="mt-8 rounded-2xl bg-panel-card border border-white/10 p-5">
               <div className="flex items-center justify-between">
-                <h2 className="font-extrabold text-white">Órdenes recientes</h2>
+                <h2 className="font-extrabold text-white">{tr("text.2b494091fa")}</h2>
                 <button
                   onClick={() => navigate("/orders")}
                   className="text-sm font-extrabold text-wings-200 hover:text-wings-100"
-                >
-                  Ver todas →
-                </button>
+                > {tr("text.fc104efebe")} </button>
               </div>
 
               <div className="mt-4 grid gap-3">
-                {recent.map((o: any) => (
+                {recent.map((o) => (
                   <div key={o.id} className="rounded-xl bg-black/20 border border-white/10 p-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div className="font-extrabold text-white">
-                        #{o.id} <span className="text-white/50">•</span>{" "}
-                        <span className="text-wings-200">{o.type}</span>{" "}
-                        <span className="text-white/50">•</span>{" "}
-                        <span className="text-wings-100">{o.status}</span>
+                        #{localizeText(o.id)} <span className="text-white/50">•</span>{localizeText(" ")}
+                        <span className="text-wings-200">{localizeText(o.type)}</span>{localizeText(" ")}
+                        <span className="text-white/50">•</span>{localizeText(" ")}
+                        <span className="text-wings-100">{localizeText(o.status)}</span>
                       </div>
                       <div className="text-xs text-white/60">
-                        {new Date(o.created_at).toLocaleString()}
+                        {new Date(o.created_at).toLocaleString(document.documentElement.lang === "en" ? "en-US" : "es-MX")}
                       </div>
                     </div>
 
                     <div className="mt-2 text-sm text-slate-300 flex flex-wrap gap-x-4 gap-y-1">
-                      <div>Total: <span className="text-white font-extrabold">{money(o.total_amount)}</span></div>
-                      {o.table ? <div>Mesa: <span className="text-white">{o.table.name}</span></div> : null}
-                      {o.created_by ? <div>Por: <span className="text-white">{o.created_by.name}</span></div> : null}
+                      <div>{tr("text.d8e7170f94")} <span className="text-white font-extrabold">{money(o.total_amount)}</span></div>
+                      {o.table ? <div>{tr("text.c29941d0dd")} <span className="text-white">{localizeText(o.table.name)}</span></div> : null}
+                      {o.created_by ? <div>{tr("text.34b98352ea")} <span className="text-white">{localizeText(o.created_by.name)}</span></div> : null}
                     </div>
 
                     <div className="mt-3 text-sm text-white/85">
-                      {o.items?.slice(0, 4).map((it: any) => (
+                      {o.items?.slice(0, 4).map((it) => (
                         <div key={it.id}>
-                          <span className="font-extrabold">{it.quantity}x</span>{" "}
-                          {it.product?.name ?? "Producto"}
+                          <span className="font-extrabold">{localizeText(it.quantity)}{tr("text.11f6ad8ec5")}</span>{localizeText(" ")}
+                          {localizeText(it.product?.name ?? "Producto")}
                         </div>
                       ))}
-                      {o.items?.length > 4 ? (
+                      {(o.items?.length ?? 0) > 4 ? (
                         <div className="text-xs text-white/60 mt-1">
-                          +{o.items.length - 4} más…
-                        </div>
+                          +{(o.items?.length ?? 0) - 4} {tr("text.1d63920363")} </div>
                       ) : null}
                     </div>
                   </div>
                 ))}
 
                 {!recent.length ? (
-                  <div className="text-sm text-white/60 py-6 text-center">
-                    No hay órdenes hoy todavía.
-                  </div>
+                  <div className="text-sm text-white/60 py-6 text-center"> {tr("text.c5fa0308d0")} </div>
                 ) : null}
               </div>
             </div>

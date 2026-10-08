@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../../site/locale';
 // src/components/layout/AppLayout.tsx
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
@@ -10,6 +11,7 @@ interface AppLayoutProps {
 type NavItem = { label: string; to: string };
 
 export function AppLayout({ children }: AppLayoutProps) {
+  useSiteLocale();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -73,8 +75,8 @@ export function AppLayout({ children }: AppLayoutProps) {
     <div className="h-full flex flex-col">
       {/* Header fijo */}
       <div className="shrink-0 mb-4">
-        <h2 className="text-xl font-bold text-wings-100">Alitas Bonnibel</h2>
-        <p className="text-xs text-slate-400">Panel administrativo</p>
+        <h2 className="text-xl font-bold text-wings-100">{tr("text.5c77c70346")}</h2>
+        <p className="text-xs text-slate-400">{tr("text.730a86fcef")}</p>
       </div>
 
       {/* NAV scrolleable */}
@@ -91,7 +93,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                   : "hover:bg-white/5 text-white/90",
               ].join(" ")}
             >
-              {item.label}
+              {localizeText(item.label)}
             </button>
           ))}
         </nav>
@@ -109,19 +111,17 @@ export function AppLayout({ children }: AppLayoutProps) {
         "
         >
           <div className="mb-2">
-            <div className="font-semibold text-sm">{user.name}</div>
-            <div className="text-slate-400">{user.email}</div>
+            <div className="font-semibold text-sm">{localizeText(user.name)}</div>
+            <div className="text-slate-400">{localizeText(user.email)}</div>
             <div className="uppercase text-[10px] tracking-wide text-wings-200">
-              {user.role}
+              {localizeText(user.role)}
             </div>
           </div>
 
           <button
             className="w-full text-left px-3 py-2 rounded-lg bg-wings-500/90 hover:bg-wings-400 text-xs font-extrabold transition"
             onClick={handleLogout}
-          >
-            Cerrar sesión
-          </button>
+          > {tr("text.f394d0254e")} </button>
         </div>
       )}
     </div>
@@ -137,28 +137,24 @@ export function AppLayout({ children }: AppLayoutProps) {
           <button
             onClick={() => setMobileOpen(true)}
             className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition font-extrabold"
-            aria-label="Abrir menú"
+            aria-label={tr("text.256a5c2ab3")}
           >
             ☰
           </button>
 
-          <div className="text-sm font-extrabold text-wings-100">
-            Alitas Bonnibel
-          </div>
+          <div className="text-sm font-extrabold text-wings-100"> {tr("text.5c77c70346")} </div>
 
           <button
             onClick={() => navigate("/")}
             className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition text-xs font-extrabold"
-          >
-            Público
-          </button>
+          > {tr("text.ff2e5e62f8")} </button>
         </div>
       </header>
 
       <div className="flex">
         {/* Sidebar desktop */}
         <aside className="hidden md:flex w-64 bg-panel-card border-r border-white/10 p-4">
-          {SidebarContent}
+          {localizeText(SidebarContent)}
         </aside>
 
         {/* Drawer mobile */}
@@ -187,11 +183,11 @@ export function AppLayout({ children }: AppLayoutProps) {
             <div className="h-full flex flex-col p-4">
               {/* Header móvil */}
               <div className="flex items-center justify-between mb-4 shrink-0">
-                <div className="text-sm font-extrabold text-wings-100">Menú</div>
+                <div className="text-sm font-extrabold text-wings-100">{tr("text.17ea0a188c")}</div>
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition font-extrabold"
-                  aria-label="Cerrar menú"
+                  aria-label={tr("text.9f4dfc32f8")}
                 >
                   ✕
                 </button>
@@ -199,7 +195,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 
               {/* SIDEBAR CONTENT */}
               <div className="flex-1 min-h-0 overflow-hidden">
-                {SidebarContent}
+                {localizeText(SidebarContent)}
               </div>
             </div>
           </aside>
@@ -207,7 +203,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         </div>
 
         {/* Main */}
-        <main className="flex-1 p-4 md:p-6">{children}</main>
+        <main className="flex-1 p-4 md:p-6">{localizeText(children)}</main>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, text as localizeText } from '../../site/locale';
 type Category = {
   id: string;
   label: string;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export function MenuCategoryTabs({ categories }: Props) {
+  useSiteLocale();
   return (
     <div className="sticky top-20 z-20">
       <div className="max-w-6xl mx-auto px-4">
@@ -37,8 +39,8 @@ export function MenuCategoryTabs({ categories }: Props) {
                   whitespace-nowrap
                 "
               >
-                <span>{c.emoji}</span>
-                {c.label}
+                <span>{localizeText(c.emoji)}</span>
+                {localizeText(c.label)}
               </a>
             ))}
           </div>

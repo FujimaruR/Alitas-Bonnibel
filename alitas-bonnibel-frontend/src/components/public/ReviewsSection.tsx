@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../../site/locale';
 import { Reveal } from "./Reveal";
 
 type Review = {
@@ -35,6 +36,7 @@ const REVIEWS: Review[] = [
 ];
 
 function Stars({ rating }: { rating: number }) {
+  useSiteLocale();
   return (
     <div className="flex gap-1 text-sm">
       {Array.from({ length: 5 }).map((_, i) => (
@@ -47,12 +49,11 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export function ReviewsSection() {
+  useSiteLocale();
   return (
     <section className="max-w-6xl mx-auto px-4 py-12 md:py-16">
       <Reveal>
-        <h2 className="text-center font-display text-3xl md:text-5xl text-slate-900">
-          Lo que dicen nuestros clientes
-        </h2>
+        <h2 className="text-center font-display text-3xl md:text-5xl text-slate-900"> {tr("text.ed0a9b4a99")} </h2>
       </Reveal>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -72,14 +73,14 @@ export function ReviewsSection() {
               <Stars rating={r.rating} />
 
               <p className="mt-4 text-slate-900 text-base leading-relaxed">
-                {r.text}
+                {localizeText(r.text)}
               </p>
 
               <div className="mt-auto pt-6 flex items-center gap-3">
                 <div className="relative">
                   <img
                     src={r.avatarUrl}
-                    alt={r.name}
+                    alt={localizeText(r.name)}
                     className="w-12 h-12 rounded-full border-2 border-slate-900 object-cover"
                   />
                   <span className="absolute -right-1 -bottom-1 w-5 h-5 rounded-full bg-wings-500 border-2 border-slate-900 flex items-center justify-center text-[10px] text-white font-extrabold">
@@ -88,7 +89,7 @@ export function ReviewsSection() {
                 </div>
 
                 <div className="font-extrabold text-slate-900">
-                  {r.name}
+                  {localizeText(r.name)}
                 </div>
               </div>
             </article>
@@ -107,8 +108,7 @@ export function ReviewsSection() {
               shadow-[0_18px_45px_rgba(0,0,0,0.2)]
               hover:scale-105 transition
             "
-          >
-            Ver más reseñas <span>→</span>
+          > {tr("text.983f20903f")} <span>→</span>
           </a>
         </div>
       </Reveal>

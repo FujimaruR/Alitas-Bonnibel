@@ -1,0 +1,1414 @@
+{
+  "language.label": {
+    "es": "Idioma",
+    "en": "Language"
+  },
+  "site.title": {
+    "es": "Alitas Bonnibel",
+    "en": "Alitas Bonnibel"
+  },
+  "site.description": {
+    "es": "Alitas Bonnibel · Menú, ubicación y contacto.",
+    "en": "Alitas Bonnibel · Menu, location and contact."
+  },
+  "text.d8a53e1f6d": {
+    "es": "Contacto",
+    "en": "Contact"
+  },
+  "text.34d6aa1522": {
+    "es": "Ver menú",
+    "en": "View menu"
+  },
+  "text.17ea0a188c": {
+    "es": "Menú",
+    "en": "Menu"
+  },
+  "text.ed0a9b4a99": {
+    "es": "Lo que dicen nuestros clientes",
+    "en": "What our customers say"
+  },
+  "text.e68491e91c": {
+    "es": "Nombre",
+    "en": "Name"
+  },
+  "text.98f00c3e0a": {
+    "es": "Correo",
+    "en": "Email"
+  },
+  "text.eb9e23efc4": {
+    "es": "Mensaje",
+    "en": "Message"
+  },
+  "text.63e7cb7598": {
+    "es": "Nuestra historia",
+    "en": "Our story"
+  },
+  "text.1078cf414b": {
+    "es": "lazy",
+    "en": "lazy"
+  },
+  "text.256a5c2ab3": {
+    "es": "Abrir menú",
+    "en": "Open menu"
+  },
+  "text.71f8e7976e": {
+    "es": "none",
+    "en": "none"
+  },
+  "text.a7349b7cad": {
+    "es": "Tu carrito",
+    "en": "Your cart"
+  },
+  "text.707b8df477": {
+    "es": "c/u",
+    "en": "each"
+  },
+  "text.be78bcf6d4": {
+    "es": "Quitar",
+    "en": "Remove"
+  },
+  "text.97f7359ed8": {
+    "es": "Subtotal",
+    "en": "Subtotal"
+  },
+  "text.b25928c699": {
+    "es": "Total",
+    "en": "Total"
+  },
+  "text.87ebeeddda": {
+    "es": "Agregar",
+    "en": "Add"
+  },
+  "text.59a16700ff": {
+    "es": "Correo electrónico",
+    "en": "Email address"
+  },
+  "text.84add5b295": {
+    "es": "Email",
+    "en": "Email"
+  },
+  "text.b1bb8ea50e": {
+    "es": "Detalles",
+    "en": "Details"
+  },
+  "text.b25cabb544": {
+    "es": "Enviar mensaje",
+    "en": "Send message"
+  },
+  "text.28c0146f2a": {
+    "es": "❌ Error al crear el pedido",
+    "en": "❌ Could not create the order"
+  },
+  "text.ec62e4ba4b": {
+    "es": "Pedido (demo)",
+    "en": "Order (demo)"
+  },
+  "text.4b0816bbd5": {
+    "es": "Cerrar",
+    "en": "Close"
+  },
+  "text.ba601ffba0": {
+    "es": "Aún no agregas nada. Ve al menú y elige algo 🍗",
+    "en": "Your cart is empty. Visit the menu and choose something 🍗"
+  },
+  "text.40a9e5aa4d": {
+    "es": "Vaciar",
+    "en": "Empty"
+  },
+  "text.a81e4b6071": {
+    "es": "Confirmar Pedido",
+    "en": "Confirm order"
+  },
+  "text.a6450bdf38": {
+    "es": "*Demo: el pedido se envía como mensaje de WhatsApp.",
+    "en": "*Demo: the order opens as a WhatsApp message."
+  },
+  "text.d87f47b47e": {
+    "es": "Resumen",
+    "en": "Dashboard"
+  },
+  "text.a9833c398f": {
+    "es": "Menú (Admin)",
+    "en": "Menu (Admin)"
+  },
+  "text.d006456c4f": {
+    "es": "Mesas",
+    "en": "Tables"
+  },
+  "text.2582b2b860": {
+    "es": "Órdenes",
+    "en": "Orders"
+  },
+  "text.6c060fc042": {
+    "es": "Nueva Orden",
+    "en": "New order"
+  },
+  "text.e22ac0e4ca": {
+    "es": "Cocina",
+    "en": "Kitchen"
+  },
+  "text.cc13c6f5b1": {
+    "es": "Usuarios",
+    "en": "Users"
+  },
+  "text.1f4f39c7bb": {
+    "es": "Órdenes (solo lectura)",
+    "en": "Orders (read only)"
+  },
+  "text.5c77c70346": {
+    "es": "Alitas Bonnibel",
+    "en": "Alitas Bonnibel"
+  },
+  "text.730a86fcef": {
+    "es": "Panel administrativo",
+    "en": "Administration panel"
+  },
+  "text.f394d0254e": {
+    "es": "Cerrar sesión",
+    "en": "Sign out"
+  },
+  "text.ff2e5e62f8": {
+    "es": "Público",
+    "en": "Public"
+  },
+  "text.9f4dfc32f8": {
+    "es": "Cerrar menú",
+    "en": "Close menu"
+  },
+  "text.fe67dbb8d7": {
+    "es": "Mapa sucursales",
+    "en": "Branch map"
+  },
+  "text.cec7570e83": {
+    "es": "no-referrer-when-downgrade",
+    "en": "no-referrer-when-downgrade"
+  },
+  "text.50a206c019": {
+    "es": "Búfalo Clásico",
+    "en": "Classic buffalo"
+  },
+  "text.139244b5ff": {
+    "es": "Mango Habanero",
+    "en": "Mango Habanero"
+  },
+  "text.8803deedf7": {
+    "es": "BBQ Ahumada",
+    "en": "Smoky BBQ"
+  },
+  "text.2d0a732d7d": {
+    "es": "Lemon Pepper",
+    "en": "Lemon Pepper"
+  },
+  "text.eae4b7eb1c": {
+    "es": "Ideal con ranch",
+    "en": "Great with ranch"
+  },
+  "text.faef499a26": {
+    "es": "Extra salsa +$10",
+    "en": "Extra sauce +$10"
+  },
+  "text.242188afee": {
+    "es": "Boneless compatible",
+    "en": "Available for boneless"
+  },
+  "text.9c756414ab": {
+    "es": "Pasa el mouse por otro sabor para cambiar.",
+    "en": "Hover over another flavor to switch."
+  },
+  "text.1c4c8859ae": {
+    "es": "Elegir",
+    "en": "Choose"
+  },
+  "text.6d8a4d65c3": {
+    "es": "Pasa el mouse para ver más →",
+    "en": "Hover to see more →"
+  },
+  "text.a15062349c": {
+    "es": "Alitas, boneless y papas con salsas brutales. Hecho para antojar, perfecto para compartir.",
+    "en": "Wings, boneless and fries with bold sauces. Perfect for cravings and sharing."
+  },
+  "text.acfb387481": {
+    "es": "📍 Nuevo León",
+    "en": "📍 Nuevo León"
+  },
+  "text.c6cea120a9": {
+    "es": "🕓 4pm–11pm",
+    "en": "🕓 4pm–11pm"
+  },
+  "text.dc970b2798": {
+    "es": "🛵 Para llevar",
+    "en": "🛵 Takeaway"
+  },
+  "text.69cc527f7a": {
+    "es": "Secciones",
+    "en": "Sections"
+  },
+  "text.e98a8568c8": {
+    "es": "Sabores",
+    "en": "Flavors"
+  },
+  "text.7fbc0ed481": {
+    "es": "Nosotros",
+    "en": "About us"
+  },
+  "text.278fffb608": {
+    "es": "WhatsApp:",
+    "en": "WhatsApp:"
+  },
+  "text.56aa63fa2c": {
+    "es": "IG:",
+    "en": "IG:"
+  },
+  "text.6f49de9f10": {
+    "es": "@alitasbonnibel",
+    "en": "@alitasbonnibel"
+  },
+  "text.dae905606b": {
+    "es": "Correo:",
+    "en": "Email:"
+  },
+  "text.da4fc86973": {
+    "es": "Alitas Bonnibel. Todos los derechos reservados.",
+    "en": "Alitas Bonnibel. All rights reserved."
+  },
+  "text.8a5c465200": {
+    "es": "Hecho con ❤️ y mucha salsa.",
+    "en": "Made with ❤️ and plenty of sauce."
+  },
+  "text.06d945942a": {
+    "es": "AB",
+    "en": "AB"
+  },
+  "text.a3e06177ca": {
+    "es": "Alitas y boneless",
+    "en": "Wings & Boneless"
+  },
+  "text.0770c14874": {
+    "es": "Sucursales",
+    "en": "Branches"
+  },
+  "text.03792b7760": {
+    "es": "Panel admin",
+    "en": "Admin panel"
+  },
+  "text.ecf8553aea": {
+    "es": "Pide ahora",
+    "en": "Order now"
+  },
+  "text.1d24783dc5": {
+    "es": "Ancelma Martinez",
+    "en": "Ancelma Martinez"
+  },
+  "text.78855fd2f1": {
+    "es": "Excelente opción, muy rica la salsa de alitas!",
+    "en": "An excellent option, with a delicious wing sauce!"
+  },
+  "text.e101993739": {
+    "es": "Ian Castillo",
+    "en": "Ian Castillo"
+  },
+  "text.a45f1252a7": {
+    "es": "Como siempre que compro, rapidito y bien rico las alitas.",
+    "en": "Every time I order, the wings arrive quickly and taste great."
+  },
+  "text.479df1c40b": {
+    "es": "Oscar Cruz",
+    "en": "Oscar Cruz"
+  },
+  "text.10274e43f7": {
+    "es": "Excelentes alitas y la salsa bien sabrosa.",
+    "en": "Excellent wings with a delicious sauce."
+  },
+  "text.2d1d6ff8b0": {
+    "es": "Lizbeth Lopez",
+    "en": "Lizbeth Lopez"
+  },
+  "text.1c8257e108": {
+    "es": "Sin duda volvere a comprar.",
+    "en": "I will definitely order again."
+  },
+  "text.983f20903f": {
+    "es": "Ver más reseñas",
+    "en": "See more reviews"
+  },
+  "text.645e795a80": {
+    "es": "M0,96L60,80C120,64,240,32,360,37.3C480,43,600,85,720,90.7C840,96,960,64,1080,48C1200,32,1320,32,1380,32L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z",
+    "en": "M0,96L60,80C120,64,240,32,360,37.3C480,43,600,85,720,90.7C840,96,960,64,1080,48C1200,32,1320,32,1380,32L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"
+  },
+  "text.a86d4a854f": {
+    "es": "M0,80 C120,110 360,110 720,80 1080,50 1320,60 1440,70 L1440,120 L0,120 Z",
+    "en": "M0,80 C120,110 360,110 720,80 1080,50 1320,60 1440,70 L1440,120 L0,120 Z"
+  },
+  "text.5d8a4530e8": {
+    "es": "Contáctanos",
+    "en": "Contact us"
+  },
+  "text.4b9c59866f": {
+    "es": "¿Antojo, duda o pedido? Escríbenos y te atendemos rápido 🔥",
+    "en": "Craving wings, have a question or want to order? Message us 🔥"
+  },
+  "text.7e7f2a110f": {
+    "es": "💬 Escríbenos por WhatsApp",
+    "en": "💬 Message us on WhatsApp"
+  },
+  "text.7b58eb0b81": {
+    "es": "#FE8330",
+    "en": "#FE8330"
+  },
+  "text.d4ed962f53": {
+    "es": "Información de contacto",
+    "en": "Contact information"
+  },
+  "text.17f06238db": {
+    "es": "Nuevo León, México",
+    "en": "Nuevo León, Mexico"
+  },
+  "text.542dd01ddd": {
+    "es": "Lunes a Domingo · 4:00 pm – 11:00 pm",
+    "en": "Monday–Sunday · 4:00 pm – 11:00 pm"
+  },
+  "text.797247f9e2": {
+    "es": "WhatsApp: +52 81 1234 5678",
+    "en": "WhatsApp: +52 81 1234 5678"
+  },
+  "text.c70d445139": {
+    "es": "Instagram: @alitasbonnibel",
+    "en": "Instagram: @alitasbonnibel"
+  },
+  "text.8d34949a6c": {
+    "es": "🍗 Pedir ahora",
+    "en": "🍗 Order now"
+  },
+  "text.cfa27c46c5": {
+    "es": "Envíanos un mensaje",
+    "en": "Send us a message"
+  },
+  "text.159ac99bae": {
+    "es": "Resumen de hoy. Auto-refresh cada 5s.",
+    "en": "Today's summary. Refreshes every 5 seconds."
+  },
+  "text.b357b80598": {
+    "es": "Ir a Cocina",
+    "en": "Go to kitchen"
+  },
+  "text.9d2c9d8010": {
+    "es": "Recargar",
+    "en": "Reload"
+  },
+  "text.6b416d9c40": {
+    "es": "Cargando…",
+    "en": "Loading…"
+  },
+  "text.7f2f6a15cf": {
+    "es": "Error",
+    "en": "Error"
+  },
+  "text.8d63114771": {
+    "es": "Órdenes hoy",
+    "en": "Orders today"
+  },
+  "text.b4e2897b8e": {
+    "es": "Ventas hoy",
+    "en": "Sales today"
+  },
+  "text.30a64ac7b2": {
+    "es": "Ticket promedio",
+    "en": "Average order value"
+  },
+  "text.2b494091fa": {
+    "es": "Órdenes recientes",
+    "en": "Recent orders"
+  },
+  "text.fc104efebe": {
+    "es": "Ver todas →",
+    "en": "View all →"
+  },
+  "text.d8e7170f94": {
+    "es": "Total:",
+    "en": "Total:"
+  },
+  "text.c29941d0dd": {
+    "es": "Mesa:",
+    "en": "Table:"
+  },
+  "text.34b98352ea": {
+    "es": "Por:",
+    "en": "By:"
+  },
+  "text.11f6ad8ec5": {
+    "es": "x",
+    "en": "x"
+  },
+  "text.9d2d6bed5d": {
+    "es": "Producto",
+    "en": "Product"
+  },
+  "text.1d63920363": {
+    "es": "más…",
+    "en": "more…"
+  },
+  "text.c5fa0308d0": {
+    "es": "No hay órdenes hoy todavía.",
+    "en": "No orders today yet."
+  },
+  "text.34635bfe08": {
+    "es": "Tablero: pendientes → preparación → listo. (Auto-refresh cada 3s)",
+    "en": "Board: pending → preparing → ready. Refreshes every 3 seconds."
+  },
+  "text.eaf186d9f3": {
+    "es": "Pendientes",
+    "en": "Pending"
+  },
+  "text.08c07e5d9d": {
+    "es": "En preparación",
+    "en": "Preparing"
+  },
+  "text.2a4d9a6560": {
+    "es": "Listas",
+    "en": "Ready"
+  },
+  "text.e71fea85c3": {
+    "es": "Avanzar a",
+    "en": "Move to"
+  },
+  "text.b715e2047a": {
+    "es": "Sin órdenes aquí",
+    "en": "No orders here"
+  },
+  "text.11d7b7c959": {
+    "es": "Correo o contraseña incorrectos",
+    "en": "Incorrect email or password"
+  },
+  "text.2af2adaa16": {
+    "es": "No se pudo conectar con el servidor. Intenta de nuevo.",
+    "en": "Could not connect to the server. Try again."
+  },
+  "text.17c736c0c7": {
+    "es": "Panel de administración",
+    "en": "Administration panel"
+  },
+  "text.5a6d1c6129": {
+    "es": "Contraseña",
+    "en": "Password"
+  },
+  "text.4249fe1145": {
+    "es": "Entrando...",
+    "en": "Signing in..."
+  },
+  "text.9c18b1ef16": {
+    "es": "Iniciar sesión",
+    "en": "Sign in"
+  },
+  "text.ed6e3a63cc": {
+    "es": "← Volver al sitio",
+    "en": "← Back to website"
+  },
+  "text.3b47084615": {
+    "es": "Crea categorías y productos. Los inactivos no salen en el menú público. Los favoritos se muestran en la landing.",
+    "en": "Create categories and products. Inactive items are hidden from the public menu. Favorites appear on the landing page."
+  },
+  "text.941a1528f5": {
+    "es": "Categorías",
+    "en": "Categories"
+  },
+  "text.6d74a1cb98": {
+    "es": "Crear categoría",
+    "en": "Create category"
+  },
+  "text.dd16d75f26": {
+    "es": "Nombre (ej. Alitas)",
+    "en": "Name (e.g. Wings)"
+  },
+  "text.22c1f13ab2": {
+    "es": "Slug (ej. alitas)",
+    "en": "Slug (e.g. wings)"
+  },
+  "text.48a0686f58": {
+    "es": "Crear",
+    "en": "Create"
+  },
+  "text.14e2a639ae": {
+    "es": "Productos",
+    "en": "Products"
+  },
+  "text.9d9d07014d": {
+    "es": "Nombre (ej. Alitas 12 pzas)",
+    "en": "Name (e.g. 12 wings)"
+  },
+  "text.cfb3a6126f": {
+    "es": "Precio (ej. 179)",
+    "en": "Price (e.g. 179)"
+  },
+  "text.35c80f9645": {
+    "es": "URL de imagen",
+    "en": "Image URL"
+  },
+  "text.7908858ff7": {
+    "es": "Descripción (opcional)",
+    "en": "Description (optional)"
+  },
+  "text.e7f1aa5a59": {
+    "es": "Badges separados por coma (ej. Más pedido, 2 salsas)",
+    "en": "Badges separated by commas (e.g. Most ordered, 2 sauces)"
+  },
+  "text.77d0785671": {
+    "es": "⭐ Favorito (landing)",
+    "en": "⭐ Favorite (landing)"
+  },
+  "text.f05ea232f8": {
+    "es": "Marcar",
+    "en": "Mark"
+  },
+  "text.7b0b7ab8ba": {
+    "es": "Crear producto",
+    "en": "Create product"
+  },
+  "text.65a9147b67": {
+    "es": "⭐ Favorito",
+    "en": "⭐ Favorite"
+  },
+  "text.2b5f23437f": {
+    "es": "Editar",
+    "en": "Edit"
+  },
+  "text.28500ebff5": {
+    "es": "Quitar favorito",
+    "en": "Remove favorite"
+  },
+  "text.9a22446fb9": {
+    "es": "Hacer favorito",
+    "en": "Make favorite"
+  },
+  "text.ca78b2d733": {
+    "es": "Desactivar",
+    "en": "Deactivate"
+  },
+  "text.87c84fec83": {
+    "es": "Activar",
+    "en": "Activate"
+  },
+  "text.f6ab8a1ae9": {
+    "es": "No hay productos en esta categoría aún.",
+    "en": "No products in this category yet."
+  },
+  "text.c45766d474": {
+    "es": "Editar producto",
+    "en": "Edit product"
+  },
+  "text.8cbdfad7f9": {
+    "es": "ID #",
+    "en": "ID #"
+  },
+  "text.e8149c028c": {
+    "es": "Categoría",
+    "en": "Category"
+  },
+  "text.18e0707ea7": {
+    "es": "Precio",
+    "en": "Price"
+  },
+  "text.10140fb91e": {
+    "es": "Activo",
+    "en": "Active"
+  },
+  "text.873caab4d0": {
+    "es": "Sí",
+    "en": "Yes"
+  },
+  "text.816c52fd2b": {
+    "es": "No",
+    "en": "No"
+  },
+  "text.7fda397059": {
+    "es": "Descripción",
+    "en": "Description"
+  },
+  "text.6677b8a69f": {
+    "es": "Badges (separados por coma)",
+    "en": "Badges (comma-separated)"
+  },
+  "text.c111e0ab9d": {
+    "es": "Cancelar",
+    "en": "Cancel"
+  },
+  "text.831d46b9be": {
+    "es": "Guardar cambios",
+    "en": "Save changes"
+  },
+  "text.addbb5a3b5": {
+    "es": "Cargando menú…",
+    "en": "Loading menu…"
+  },
+  "text.c0dd54901c": {
+    "es": "No se pudo cargar el menú",
+    "en": "Could not load the menu"
+  },
+  "text.233bbdd7ea": {
+    "es": "Elige tu combo, tu salsa y deja que el antojo haga lo suyo 🍗🔥",
+    "en": "Choose your combo and sauce, and satisfy your cravings 🍗🔥"
+  },
+  "text.d177555653": {
+    "es": "💬 Pedir por WhatsApp",
+    "en": "💬 Order via WhatsApp"
+  },
+  "text.1bd9f47b2f": {
+    "es": "🛒 Carrito (",
+    "en": "🛒 Cart ("
+  },
+  "text.5988e0409d": {
+    "es": "¿Listo para pedir?",
+    "en": "Ready to order?"
+  },
+  "text.a0d7de2810": {
+    "es": "Escríbenos y te pasamos promos, salsas disponibles y tiempo de entrega.",
+    "en": "Message us for promotions, available sauces and delivery time."
+  },
+  "text.c0e88943c1": {
+    "es": "Agrega al menos 1 producto a la orden.",
+    "en": "Add at least one product to the order."
+  },
+  "text.abc37b3114": {
+    "es": "Selecciona una mesa para DINE_IN.",
+    "en": "Select a table for dine-in."
+  },
+  "text.86408a4764": {
+    "es": "Selecciona mesa (si aplica) y arma el pedido.",
+    "en": "Select a table (if applicable) and put together the order."
+  },
+  "text.9431a1863c": {
+    "es": "Ver órdenes",
+    "en": "View orders"
+  },
+  "text.6cc6198d9e": {
+    "es": "Tipo",
+    "en": "Type"
+  },
+  "text.fbf7c31eb7": {
+    "es": "DINE_IN (Mesa)",
+    "en": "Dine-in (Table)"
+  },
+  "text.d8b4c27638": {
+    "es": "TAKEOUT",
+    "en": "Takeout"
+  },
+  "text.34d4e4c718": {
+    "es": "DELIVERY",
+    "en": "Delivery"
+  },
+  "text.68602f2a99": {
+    "es": "Mesa",
+    "en": "Table"
+  },
+  "text.befc398e9d": {
+    "es": "Selecciona…",
+    "en": "Select…"
+  },
+  "text.8e0e3552c6": {
+    "es": "Tip: ideal escoger una mesa",
+    "en": "Tip: choose a table that is"
+  },
+  "text.4a9768fab0": {
+    "es": "FREE",
+    "en": "Free"
+  },
+  "text.a405a78127": {
+    "es": "Carrito",
+    "en": "Cart"
+  },
+  "text.5e22b0df44": {
+    "es": "Agrega productos de la lista ➜",
+    "en": "Add products from the list ➜"
+  },
+  "text.60e8763517": {
+    "es": "Creando…",
+    "en": "Creating…"
+  },
+  "text.95cc2fa4e4": {
+    "es": "Crear orden",
+    "en": "Create order"
+  },
+  "text.6b42874e3c": {
+    "es": "ALL",
+    "en": "ALL"
+  },
+  "text.8a3c344036": {
+    "es": "Todas",
+    "en": "All"
+  },
+  "text.a9e67c197b": {
+    "es": "Buscar producto…",
+    "en": "Search products…"
+  },
+  "text.452b800b9c": {
+    "es": "+ Agregar",
+    "en": "+ Add"
+  },
+  "text.3c72d37f3b": {
+    "es": "No hay productos que coincidan con tu búsqueda.",
+    "en": "No products match your search."
+  },
+  "text.87c47b5200": {
+    "es": "Más que alitas:",
+    "en": "More than wings:"
+  },
+  "text.03005e5a76": {
+    "es": "un lugar para el antojo.",
+    "en": "a place for your cravings."
+  },
+  "text.e261ac6160": {
+    "es": "Alitas Bonnibel nace con una idea simple: porciones generosas, salsas que se noten y una experiencia que se sienta “de casa”, pero con nivel.",
+    "en": "Alitas Bonnibel started with a simple idea: generous portions, bold sauces and an experience that feels like home, with a restaurant touch."
+  },
+  "text.0c26d69f1c": {
+    "es": "⏰ 4:00 pm – 11:00 pm · NL",
+    "en": "⏰ 4:00 pm – 11:00 pm · NL"
+  },
+  "text.76fdf7faa4": {
+    "es": "Salsas que se notan.",
+    "en": "Sauces that stand out."
+  },
+  "text.a4431902eb": {
+    "es": "Aquí no venimos a “cubrir” alitas, venimos a presumir salsa. Del clásico búfalo al mango habanero: sabor primero, siempre.",
+    "en": "We do more than coat wings: we celebrate sauce. From classic buffalo to mango habanero, flavor always comes first."
+  },
+  "text.08624efeb9": {
+    "es": "🔥 Picor real",
+    "en": "🔥 Real heat"
+  },
+  "text.db4f50fe40": {
+    "es": "🍋 Opciones frescas",
+    "en": "🍋 Fresh options"
+  },
+  "text.90eed9d57d": {
+    "es": "🍯 Dulce-picante",
+    "en": "🍯 Sweet and spicy"
+  },
+  "text.8afc30a2bc": {
+    "es": "Nuestra misión",
+    "en": "Our mission"
+  },
+  "text.603b875f24": {
+    "es": "Hacer que cada pedido sea fácil, rápido y delicioso: porción generosa, salsas memorables y papas crujientes siempre.",
+    "en": "Make every order easy, fast and delicious, with generous portions, memorable sauces and crispy fries."
+  },
+  "text.92856a3737": {
+    "es": "Calidad constante",
+    "en": "Consistent quality"
+  },
+  "text.023a865e27": {
+    "es": "Sabor auténtico",
+    "en": "Authentic flavor"
+  },
+  "text.696cb30189": {
+    "es": "Servicio cercano",
+    "en": "Friendly service"
+  },
+  "text.21c3c91571": {
+    "es": "Porciones generosas",
+    "en": "Generous portions"
+  },
+  "text.3b2552834c": {
+    "es": "Nada de porciones tristes. Aquí se viene a comer a gusto.",
+    "en": "No tiny portions. Come hungry and enjoy your meal."
+  },
+  "text.62b81999bf": {
+    "es": "Sabor con carácter",
+    "en": "Flavor with character"
+  },
+  "text.d05d4c8964": {
+    "es": "Salsas intensas, combinaciones y niveles de picor reales.",
+    "en": "Intense sauces, combinations and real heat levels."
+  },
+  "text.9dc4d406c8": {
+    "es": "Hecho con cariño",
+    "en": "Made with care"
+  },
+  "text.f15ab617e7": {
+    "es": "Queremos que se sienta casero, pero con nivel de restaurante.",
+    "en": "We want a homemade feeling with restaurant quality."
+  },
+  "text.9d0a633bbf": {
+    "es": "Cómo lo hacemos",
+    "en": "How we do it"
+  },
+  "text.5ffe5f8498": {
+    "es": "Un proceso simple, pero con detalles que hacen la diferencia.",
+    "en": "A simple process with details that make a difference."
+  },
+  "text.6a5587bef7": {
+    "es": "Pregunta por promos →",
+    "en": "Ask about promotions →"
+  },
+  "text.6a714454b5": {
+    "es": "Elegimos el sabor",
+    "en": "Choose a flavor"
+  },
+  "text.9446b0b850": {
+    "es": "Selecciona tus salsas: clásico, dulce-picante o algo más intenso.",
+    "en": "Select your sauces: classic, sweet and spicy or something more intense."
+  },
+  "text.24d94fc662": {
+    "es": "Cocinamos al momento",
+    "en": "Cooked to order"
+  },
+  "text.4304423786": {
+    "es": "Cocción controlada para que queden jugosas y crujientes.",
+    "en": "Controlled cooking for juicy, crispy wings."
+  },
+  "text.27ba886cf1": {
+    "es": "Empacamos y entregamos",
+    "en": "Pack and deliver"
+  },
+  "text.f5e83a0431": {
+    "es": "Todo bien servido, con aderezos y papas listas para disfrutar.",
+    "en": "Everything served with dips and fries, ready to enjoy."
+  },
+  "text.6795b8ce22": {
+    "es": "🍗 Haz tu pedido por WhatsApp",
+    "en": "🍗 Order via WhatsApp"
+  },
+  "text.017ef4b7df": {
+    "es": "Panel admin: lista, filtra y revisa el detalle de cada orden.",
+    "en": "Admin panel: list, filter and view order details."
+  },
+  "text.0e911db114": {
+    "es": "Todos los estatus",
+    "en": "All statuses"
+  },
+  "text.9a3897ef57": {
+    "es": "PENDIENTE",
+    "en": "PENDING"
+  },
+  "text.c4eac97b03": {
+    "es": "EN PREPARACIÓN",
+    "en": "PREPARING"
+  },
+  "text.f7c71d363f": {
+    "es": "LISTO",
+    "en": "READY"
+  },
+  "text.a99ec083d1": {
+    "es": "ENTREGADO",
+    "en": "DELIVERED"
+  },
+  "text.f028e7914c": {
+    "es": "CANCELADO",
+    "en": "CANCELED"
+  },
+  "text.71577ee257": {
+    "es": "Todos los tipos",
+    "en": "All types"
+  },
+  "text.9af0a9c042": {
+    "es": "DINE_IN",
+    "en": "Dine-in"
+  },
+  "text.60ba402d92": {
+    "es": "Orden #",
+    "en": "Orden #"
+  },
+  "text.8283e635e4": {
+    "es": "WINGS · BONELESS · PAPAS",
+    "en": "WINGS · BONELESS · FRIES"
+  },
+  "text.dc2908faea": {
+    "es": "Alitas que despiertan",
+    "en": "Wings that awaken"
+  },
+  "text.e1c2c15f91": {
+    "es": "el antojo desde la primera vista.",
+    "en": "your cravings at first sight."
+  },
+  "text.a4e2968ca9": {
+    "es": "Combos de alitas, boneless y papas con salsas que van desde el “apenas pica” hasta el “¿por qué hice esto?”. Pide, comparte y disfruta.",
+    "en": "Wing, boneless and fries combos with sauces from mildly spicy to seriously hot. Order, share and enjoy."
+  },
+  "text.fce155c8e7": {
+    "es": "Pide para llevar",
+    "en": "Order takeaway"
+  },
+  "text.8270b6bb15": {
+    "es": "⏰ Hoy abrimos de",
+    "en": "⏰ Today we open from"
+  },
+  "text.40504f5b2d": {
+    "es": "4:00 pm a 11:00 pm",
+    "en": "4:00 pm to 11:00 pm"
+  },
+  "text.b0ffd1992b": {
+    "es": "Hoy se antoja",
+    "en": "Today's craving"
+  },
+  "text.9ad6e56c96": {
+    "es": "Combo 12 Alitas",
+    "en": "12-wing combo"
+  },
+  "text.538072c764": {
+    "es": "Elige hasta 2 sabores, papas gajo y un dip cremoso.",
+    "en": "Choose up to 2 flavors, potato wedges and a creamy dip."
+  },
+  "text.21b0ffbe82": {
+    "es": "Pedir ahora!",
+    "en": "Order now!"
+  },
+  "text.e2d4d54bd7": {
+    "es": "⏰ Promo limitada",
+    "en": "⏰ Limited promotion"
+  },
+  "text.e7d61d7734": {
+    "es": "Salsas y sabores",
+    "en": "Sauces and flavors"
+  },
+  "text.18c6d1e001": {
+    "es": "Del “tranqui” al “¡trae leche por favor!”. Elige tu nivel de picor.",
+    "en": "From mild to “bring me milk, please!”. Choose your heat level."
+  },
+  "text.0370105a81": {
+    "es": "4+ sabores para combinar",
+    "en": "4+ flavors to combine"
+  },
+  "text.6626a03bd1": {
+    "es": "#FFA832",
+    "en": "#FFA832"
+  },
+  "text.f62dbb2084": {
+    "es": "Los favoritos de la casa",
+    "en": "House favorites"
+  },
+  "text.8eca5ad6c9": {
+    "es": "Estos se eligen solos. Los marcaste como ⭐ en admin.",
+    "en": "The popular picks marked as ⭐ in the admin panel."
+  },
+  "text.88d921e627": {
+    "es": "Cargando favoritos…",
+    "en": "Loading favorites…"
+  },
+  "text.1528599e47": {
+    "es": "Alitas con cariño de cocina casera.",
+    "en": "Wings with homemade care."
+  },
+  "text.8dceacf736": {
+    "es": "Alitas Bonnibel nace del amor por compartir comida rica, honesta y bien servida. Nada de porciones tristes: aquí se viene a comer a gusto.",
+    "en": "Alitas Bonnibel comes from a love of sharing tasty, honest, generously served food. Come hungry and enjoy."
+  },
+  "text.65c0cb1fac": {
+    "es": "Usamos ingredientes frescos, salsas preparadas al momento y combinaciones pensadas para que siempre encuentres algo nuevo que probar.",
+    "en": "We use fresh ingredients, freshly prepared sauces and combinations that offer something new to try."
+  },
+  "text.0cad8ae0c3": {
+    "es": "Combos pensados para compartir (o no compartir, tampoco juzgamos).",
+    "en": "Combos for sharing (or keeping to yourself, we will not judge)."
+  },
+  "text.f0a40aa36e": {
+    "es": "Niveles de picor",
+    "en": "Heat levels"
+  },
+  "text.ffaae8dc41": {
+    "es": "Desde salsas suaves hasta retos para valientes.",
+    "en": "From mild sauces to challenges for the brave."
+  },
+  "text.e801cf9536": {
+    "es": "Para llevar y en sitio",
+    "en": "Takeaway and dine-in"
+  },
+  "text.1ffeac8b0e": {
+    "es": "Pide para tu casa o ven a disfrutar la experiencia completa.",
+    "en": "Order at home or visit for the full experience."
+  },
+  "text.b880d25e89": {
+    "es": "Queremos ser “tu lugar de confianza” para alitas.",
+    "en": "We want to be your trusted place for wings."
+  },
+  "text.d28350e468": {
+    "es": "Alitas Bonnibel · Centro",
+    "en": "Alitas Bonnibel · Centro"
+  },
+  "text.41354edc5b": {
+    "es": "Alitas Bonnibel · San Nicolás",
+    "en": "Alitas Bonnibel · San Nicolás"
+  },
+  "text.83e24ac2cf": {
+    "es": "Alitas Bonnibel · Guadalupe",
+    "en": "Alitas Bonnibel · Guadalupe"
+  },
+  "text.1596a5a2ec": {
+    "es": "Nuestras sucursales",
+    "en": "Our branches"
+  },
+  "text.7606bc1042": {
+    "es": "Encuentra la sucursal más cercana y ven por tus alitas favoritas 🍗🔥",
+    "en": "Find your nearest branch and enjoy your favorite wings 🍗🔥"
+  },
+  "text.9571011075": {
+    "es": "🕓 4:00 pm – 11:00 pm",
+    "en": "🕓 4:00 pm – 11:00 pm"
+  },
+  "text.3b0e9da8af": {
+    "es": "Ver en mapa",
+    "en": "View on map"
+  },
+  "text.a688511115": {
+    "es": "Libre",
+    "en": "Free"
+  },
+  "text.cedc955bd3": {
+    "es": "Ocupada",
+    "en": "Occupied"
+  },
+  "text.fd8cedb841": {
+    "es": "Reservada",
+    "en": "Reserved"
+  },
+  "text.c3957cd4b7": {
+    "es": "¿Eliminar mesa?",
+    "en": "Delete table?"
+  },
+  "text.fd99b1e393": {
+    "es": "Admin/Mesero: crear mesas, cambiar estatus y ver última orden activa.",
+    "en": "Admin/waiter: create tables, change status and view the latest active order."
+  },
+  "text.2423c7858b": {
+    "es": "Crear mesa",
+    "en": "Create table"
+  },
+  "text.b9b8e84b01": {
+    "es": "Ej: Mesa 1",
+    "en": "E.g. Table 1"
+  },
+  "text.d789a1e992": {
+    "es": "ID:",
+    "en": "ID:"
+  },
+  "text.54e140f9f0": {
+    "es": "Eliminar",
+    "en": "Delete"
+  },
+  "text.a57253206f": {
+    "es": "Estatus",
+    "en": "Status"
+  },
+  "text.34aa4da164": {
+    "es": "Última orden activa",
+    "en": "Latest active order"
+  },
+  "text.671f4d3902": {
+    "es": "Sin órdenes activas",
+    "en": "No active orders"
+  },
+  "text.9e3962db53": {
+    "es": "¿Eliminar usuario?",
+    "en": "Delete user?"
+  },
+  "text.08b5b12110": {
+    "es": "Solo ADMIN puede gestionar usuarios.",
+    "en": "Only admins can manage users."
+  },
+  "text.e0a3e106ba": {
+    "es": "Crear usuario",
+    "en": "Create user"
+  },
+  "text.8be3c943b1": {
+    "es": "Contraseña",
+    "en": "Password"
+  },
+  "text.b521caa6e1": {
+    "es": "ADMIN",
+    "en": "Administrator"
+  },
+  "text.0e6a0fe992": {
+    "es": "KITCHEN",
+    "en": "Kitchen"
+  },
+  "text.baa596bec4": {
+    "es": "WAITER",
+    "en": "Waiter"
+  },
+  "text.e41a947762": {
+    "es": "Lista",
+    "en": "List"
+  },
+  "text.0c39e66b4e": {
+    "es": "Error cargando datos",
+    "en": "Could not load data"
+  },
+  "text.0538bd1331": {
+    "es": "No se pudo crear la orden",
+    "en": "Could not create the order"
+  },
+  "text.d5d91a501e": {
+    "es": "Error cargando dashboard",
+    "en": "Could not load the dashboard"
+  },
+  "text.e3a07dc540": {
+    "es": "Error cargando tablero",
+    "en": "Could not load the board"
+  },
+  "text.f2c33ecade": {
+    "es": "Error cargando órdenes",
+    "en": "Could not load orders"
+  },
+  "text.0fbc78e504": {
+    "es": "No se pudo actualizar el estatus",
+    "en": "Could not update the status"
+  },
+  "text.96bb80ab80": {
+    "es": "IN_PREPARATION",
+    "en": "Preparing"
+  },
+  "text.0a7b38b716": {
+    "es": "PENDING",
+    "en": "Pending"
+  },
+  "text.fc554d02b8": {
+    "es": "READY",
+    "en": "Ready"
+  },
+  "text.a29e4a4760": {
+    "es": "SERVED",
+    "en": "Served"
+  },
+  "text.5587b0afcc": {
+    "es": "CANCELLED",
+    "en": "Canceled"
+  },
+  "text.dc884b0a74": {
+    "es": "OCCUPIED",
+    "en": "Occupied"
+  },
+  "text.044eabc219": {
+    "es": "RESERVED",
+    "en": "Reserved"
+  },
+  "text.17efca6aa2": {
+    "es": "Hola! Quiero información o hacer un pedido 🍗🔥",
+    "en": "Hi! I would like information or to place an order 🍗🔥"
+  },
+  "text.a27856714b": {
+    "es": "Comandos disponibles:",
+    "en": "Available commands:"
+  },
+  "text.a31b6eb700": {
+    "es": "  curriculum  -> muestra el CV aquí",
+    "en": "  curriculum  -> display the résumé here"
+  },
+  "text.0b33c97909": {
+    "es": "  open        -> abre el CV en una pestaña nueva",
+    "en": "  open        -> open the résumé in a new tab"
+  },
+  "text.57ceb009c6": {
+    "es": "  download    -> descarga el CV",
+    "en": "  download    -> download the résumé"
+  },
+  "text.bbbb21f6a5": {
+    "es": "  clear       -> limpia la terminal",
+    "en": "  clear       -> clear the terminal"
+  },
+  "text.d3c02cdfe8": {
+    "es": "  help        -> muestra esta ayuda",
+    "en": "  help        -> display this help"
+  },
+  "text.90708b1574": {
+    "es": "Abriendo CV...",
+    "en": "Opening résumé..."
+  },
+  "text.9437fd14d6": {
+    "es": "Descargando CV...",
+    "en": "Downloading résumé..."
+  },
+  "text.c22c9f7e8b": {
+    "es": "hace unos segundos",
+    "en": "a few seconds ago"
+  },
+  "text.62749e5a53": {
+    "es": "hace 1 min",
+    "en": "1 minute ago"
+  },
+  "template.b10019f2e5": {
+    "es": "✅ Pedido creado (#{v0})",
+    "en": "✅ Order created (#{v0})"
+  },
+  "text.fd087e505b": {
+    "es": "hola@alitasbonnibel.com",
+    "en": "hola@alitasbonnibel.com"
+  },
+  "text.6e95145b93": {
+    "es": "Formulario de demostración",
+    "en": "Demonstration form"
+  },
+  "text.9568f09b89": {
+    "es": "Simular envío",
+    "en": "Simulate submission"
+  },
+  "text.a7f5c63f17": {
+    "es": "Simulación completada. No se envió ningún mensaje.",
+    "en": "Simulation completed. No message was sent."
+  },
+  "text.97274d08dd": {
+    "es": "Este formulario es una demostración y no envía mensajes.",
+    "en": "This is a demonstration form and does not send messages."
+  },
+  "template.4d03fa36c1": {
+    "es": "hace {v0} min",
+    "en": "{v0} minutes ago"
+  },
+  "text.70f8bb9a8a": {
+    "es": "Inicio",
+    "en": "Home"
+  },
+  "text.e09212c7d3": {
+    "es": "Habilidades",
+    "en": "Skills"
+  },
+  "text.036b18f02a": {
+    "es": "Portafolio",
+    "en": "Portfolio"
+  },
+  "text.81a05566b3": {
+    "es": "Caso de estudio",
+    "en": "Case Study"
+  },
+  "text.c108c83a8f": {
+    "es": "Desarrollador Full Stack",
+    "en": "Full Stack Developer"
+  },
+  "text.1ab37bb1d1": {
+    "es": "Lenguajes de programación",
+    "en": "Programming Languages"
+  },
+  "text.4a84732290": {
+    "es": "Backend y frameworks",
+    "en": "Backend & Frameworks"
+  },
+  "text.43ca5f4981": {
+    "es": "Bases de datos y formatos",
+    "en": "Databases & Data Formats"
+  },
+  "text.9182865005": {
+    "es": "Nube, DevOps y sistemas",
+    "en": "Cloud, DevOps & Systems"
+  },
+  "text.8016ed39c8": {
+    "es": "Otras herramientas y conceptos",
+    "en": "Other Tools & Concepts"
+  },
+  "text.f16a8cf3e7": {
+    "es": "Desarrollador Full Stack · Enfoque en backend",
+    "en": "Full Stack Developer · Backend Focus"
+  },
+  "text.3c2a8144c2": {
+    "es": "· Creado con React y Vite",
+    "en": "· Built with React & Vite"
+  },
+  "text.ff88c7f616": {
+    "es": "Full Stack (enfoque en backend)",
+    "en": "Full Stack (Backend Focus)"
+  },
+  "text.a2b2f96037": {
+    "es": "Diseño adaptable y componentes de interfaz",
+    "en": "Responsive design + UI components"
+  },
+  "text.7a2ae0d0d2": {
+    "es": "Entrada de comandos",
+    "en": "Terminal command input"
+  },
+  "text.51f288d62a": {
+    "es": "CV en PDF",
+    "en": "Resume PDF"
+  },
+  "text.7422e96e38": {
+    "es": "Terminal vaciada.",
+    "en": "Terminal cleared."
+  },
+  "text.9cf2d21e98": {
+    "es": "EmilioOS v1.0 — Terminal lista.",
+    "en": "EmilioOS v1.0 — Terminal ready."
+  },
+  "text.3ac8e9e58c": {
+    "es": "Finalizar pedido",
+    "en": "Checkout"
+  },
+  "text.c0c3a27576": {
+    "es": "Comandos:",
+    "en": "Commands:"
+  },
+  "text.6d38bde033": {
+    "es": "curriculum - Muestra el CV en pantalla",
+    "en": "curriculum - Display the résumé on screen"
+  },
+  "text.26de87883d": {
+    "es": "open - Abre el CV en una nueva pestaña",
+    "en": "open - Open the résumé in a new tab"
+  },
+  "text.5151e1037e": {
+    "es": "download - Descarga el CV",
+    "en": "download - Download the résumé"
+  },
+  "text.13422fd4d7": {
+    "es": "clear - Limpia la terminal",
+    "en": "clear - Clear the terminal"
+  },
+  "text.295fab854e": {
+    "es": "Abriendo Resume-EmilioCastillo.pdf...",
+    "en": "Opening Resume-EmilioCastillo.pdf..."
+  },
+  "text.e83395fbb3": {
+    "es": "Abriendo CV en una nueva pestaña...",
+    "en": "Opening the résumé in a new tab..."
+  },
+  "text.fefafc9475": {
+    "es": "El pedido se registra en el servidor al confirmar.",
+    "en": "Confirming registers the order on the server."
+  },
+  "ui.load_error": {
+    "es": "No se pudo cargar la información. Intenta de nuevo.",
+    "en": "Could not load the information. Try again."
+  },
+  "ui.order_created": {
+    "es": "Pedido creado (#{id})",
+    "en": "Order created (#{id})"
+  },
+  "ui.navigation": {
+    "es": "Abrir navegación",
+    "en": "Open navigation"
+  },
+  "text.60f92f2f9b": {
+    "es": "Documentación",
+    "en": "Documentation"
+  },
+  "text.e6b1962159": {
+    "es": "Realidad Virtual",
+    "en": "Virtual reality"
+  },
+  "text.03730f6829": {
+    "es": "Papel profesional",
+    "en": "Professional role"
+  },
+  "text.2cf35c7a37": {
+    "es": "Contribución personal pendiente de documentar.",
+    "en": "Personal contribution has not yet been documented."
+  },
+  "text.0e1f2e2603": {
+    "es": "Estado no documentado.",
+    "en": "Status has not yet been documented."
+  },
+  "time.minutes": {
+    "es": "hace {minutes} min",
+    "en": "{minutes} minutes ago"
+  },
+  "time.seconds": {
+    "es": "hace unos segundos",
+    "en": "a few seconds ago"
+  },
+  "time.one": {
+    "es": "hace 1 min",
+    "en": "1 minute ago"
+  },
+  "order.table": {
+    "es": " • Mesa {name}",
+    "en": " • Table {name}"
+  },
+  "ui.validation": {
+    "es": "Revisa los campos obligatorios y el formato del correo.",
+    "en": "Check the required fields and the email format."
+  }
+}

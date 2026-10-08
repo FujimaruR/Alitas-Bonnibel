@@ -5,8 +5,8 @@ type Options = IntersectionObserverInit & {
 };
 
 export function useInView(options: Options = {}) {
-  const { once = true, ...io } = options;
-  const ref = useRef<HTMLElement | null>(null);
+  const { once = true, root = null, rootMargin = "0px", threshold = 0 } = options;
+  const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -20,11 +20,11 @@ export function useInView(options: Options = {}) {
       } else if (!once) {
         setIsVisible(false);
       }
-    }, io);
+    }, { root, rootMargin, threshold });
 
     obs.observe(el);
     return () => obs.disconnect();
-  }, [once, io.root, io.rootMargin, io.threshold]);
+  }, [once, root, rootMargin, threshold]);
 
   return { ref, isVisible };
 }

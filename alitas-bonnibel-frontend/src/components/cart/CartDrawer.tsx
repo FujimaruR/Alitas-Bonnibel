@@ -1,4 +1,7 @@
-import { useCart } from "../../cart/cart.context";
+import { useState } from 'react';
+import { track } from '../../site/analytics';
+import { useLocale as useSiteLocale, money as formatMoney, t as tr, text as localizeText } from '../../site/locale';
+import { useCart } from "../../cart/cart.shared";
 import { createOrder } from "../../lib/orders";
 
 type Props = {
@@ -8,15 +11,25 @@ type Props = {
 };
 
 export function CartDrawer({ open, onClose }: Props) {
+  useSiteLocale();
   const { items, subtotal, inc, dec, removeItem, clear } = useCart();
 
+  const [submitting, setSubmitting] = useState(false);
   async function handleConfirmOrder() {
+    if (submitting) return;
+    track('form_start', 'public-order');
+    track('form_submit_attempt', 'public-order');
+    if (!items.length) { track('form_validation_error', 'public-order', 'validation'); return; }
+    setSubmitting(true);
     try {
       const order = await createOrder(items);
-      alert(`✅ Pedido creado (#${order.id})`);
+      track('form_submit_success','public-order');
+      clear();
+      alert(tr("template.b10019f2e5", {v0: localizeText(order.id)}));
       // aquí luego limpiamos carrito
-    } catch (e) {
-      alert("❌ Error al crear el pedido");
+    } catch {
+      track('form_submit_error', 'public-order', 'service');
+      alert(tr("text.28c0146f2a"));
     }
   }
 
@@ -41,13 +54,13 @@ export function CartDrawer({ open, onClose }: Props) {
         <div className="h-full flex flex-col">
           <div className="px-5 py-4 border-b flex items-center justify-between">
             <div>
-              <div className="font-extrabold text-slate-900">Tu carrito</div>
-              <div className="text-xs text-slate-500">Pedido (demo)</div>
+              <div className="font-extrabold text-slate-900">{tr("text.a7349b7cad")}</div>
+              <div className="text-xs text-slate-500">{tr("text.ec62e4ba4b")}</div>
             </div>
             <button
               className="w-10 h-10 rounded-2xl border border-slate-200 hover:bg-slate-50"
               onClick={onClose}
-              aria-label="Cerrar"
+              aria-label={tr("text.4b0816bbd5")}
             >
               ✕
             </button>
@@ -55,9 +68,7 @@ export function CartDrawer({ open, onClose }: Props) {
 
           <div className="flex-1 overflow-auto px-5 py-4">
             {items.length === 0 ? (
-              <div className="text-slate-600 text-sm">
-                Aún no agregas nada. Ve al menú y elige algo 🍗
-              </div>
+              <div className="text-slate-600 text-sm"> {tr("text.ba601ffba0")} </div>
             ) : (
               <div className="space-y-4">
                 {items.map((it) => (
@@ -69,7 +80,7 @@ export function CartDrawer({ open, onClose }: Props) {
                       {it.imageUrl ? (
                         <img
                           src={it.imageUrl}
-                          alt={it.name}
+                          alt={localizeText(it.name)}
                           className="w-full h-full object-cover"
                         />
                       ) : null}
@@ -77,9 +88,9 @@ export function CartDrawer({ open, onClose }: Props) {
 
                     <div className="flex-1">
                       <div className="font-extrabold text-slate-900 text-sm">
-                        {it.name}
+                        {localizeText(it.name)}
                       </div>
-                      <div className="text-xs text-slate-500">${it.price} c/u</div>
+                      <div className="text-xs text-slate-500">{formatMoney(it.price)} {tr("text.707b8df477")}</div>
 
                       <div className="mt-2 flex items-center justify-between">
                         <div className="inline-flex items-center gap-2">
@@ -90,7 +101,7 @@ export function CartDrawer({ open, onClose }: Props) {
                             −
                           </button>
                           <div className="w-8 text-center font-extrabold">
-                            {it.qty}
+                            {localizeText(it.qty)}
                           </div>
                           <button
                             onClick={() => inc(it.id)}
@@ -103,14 +114,12 @@ export function CartDrawer({ open, onClose }: Props) {
                         <button
                           onClick={() => removeItem(it.id)}
                           className="text-xs font-bold text-wings-500 hover:text-wings-400"
-                        >
-                          Quitar
-                        </button>
+                        > {tr("text.be78bcf6d4")} </button>
                       </div>
                     </div>
 
                     <div className="font-extrabold text-slate-900 text-sm">
-                      ${it.price * it.qty}
+                      {formatMoney(it.price * it.qty)}
                     </div>
                   </div>
                 ))}
@@ -120,8 +129,8 @@ export function CartDrawer({ open, onClose }: Props) {
 
           <div className="border-t px-5 py-4">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-slate-600">Subtotal</span>
-              <span className="font-extrabold text-slate-900">${subtotal}</span>
+              <span className="text-slate-600">{tr("text.97f7359ed8")}</span>
+              <span className="font-extrabold text-slate-900">{formatMoney(subtotal)}</span>
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-3">
@@ -135,12 +144,10 @@ export function CartDrawer({ open, onClose }: Props) {
                   hover:bg-slate-900 hover:text-white transition
                   disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-slate-900
                 "
-              >
-                Vaciar
-              </button>
+              > {tr("text.40a9e5aa4d")} </button>
 
               <button
-                onClick={handleConfirmOrder}
+                disabled={submitting || !items.length} onClick={handleConfirmOrder}
                 className="
                   px-4 py-3 rounded-2xl
                   border-2 border-slate-900/60
@@ -148,14 +155,10 @@ export function CartDrawer({ open, onClose }: Props) {
                   hover:bg-slate-900 hover:text-white transition
                   disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-slate-900
                 "
-              >
-                Confirmar Pedido
-              </button>
+              > {tr("text.a81e4b6071")} </button>
             </div>
 
-            <div className="mt-3 text-[11px] text-slate-500">
-              *Demo: el pedido se envía como mensaje de WhatsApp.
-            </div>
+            <div className="mt-3 text-[11px] text-slate-500"> {tr("text.fefafc9475")} </div>
           </div>
         </div>
       </aside>

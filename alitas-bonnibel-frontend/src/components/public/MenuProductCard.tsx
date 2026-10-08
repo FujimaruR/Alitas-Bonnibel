@@ -1,4 +1,5 @@
-import { useCart } from "../../cart/cart.context";
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../../site/locale';
+import { useCart } from "../../cart/cart.shared";
 
 type Props = {
   id: string;
@@ -19,6 +20,7 @@ export function MenuProductCard({
   badges = [],
   onAdded,
 }: Props) {
+  useSiteLocale();
   const { addItem } = useCart();
 
   return (
@@ -26,7 +28,7 @@ export function MenuProductCard({
       <div className="relative overflow-hidden">
         <img
           src={imageUrl}
-          alt={name}
+          alt={localizeText(name)}
           className="h-44 w-full object-cover transition duration-300 group-hover:scale-[1.05] group-hover:-translate-y-1"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
@@ -35,7 +37,7 @@ export function MenuProductCard({
           <div className="absolute top-3 left-3">
             {badges.map((b) => (
               <span key={b} className="px-3 py-1.5 rounded-full bg-wings-200 text-slate-900 text-sm font-extrabold shadow">
-                {b}
+                {localizeText(b)}
               </span>
             ))}
           </div>
@@ -43,11 +45,11 @@ export function MenuProductCard({
       </div>
 
       <div className="p-5">
-        <h3 className="text-base font-extrabold text-slate-900">{name}</h3>
+        <h3 className="text-base font-extrabold text-slate-900">{localizeText(name)}</h3>
 
         {description && (
           <p className="mt-2 text-xs text-slate-600 min-h-[34px]">
-            {description}
+            {localizeText(description)}
           </p>
         )}
 
@@ -55,7 +57,7 @@ export function MenuProductCard({
 
 
           <span className="px-3 py-1 rounded-full bg-wings-100 font-bold text-slate-900">
-            ${price}
+            ${localizeText(price)}
           </span>
 
           <button
@@ -65,9 +67,7 @@ export function MenuProductCard({
               addItem({ id, name, price, imageUrl });
               onAdded?.();
             }}
-          >
-            Agregar
-          </button>
+          > {tr("text.87ebeeddda")} </button>
         </div>
       </div>
     </article>

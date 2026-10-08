@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../site/locale';
 // src/pages/LoginPage.tsx
 import type { FormEvent } from "react";
 import { useState } from "react";
@@ -5,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../api/client";
 
 export default function LoginPage() {
+  useSiteLocale();
     const navigate = useNavigate();
-    const [email, setEmail] = useState("@example.com");
-    const [password, setPassword] = useState(".....");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -28,10 +31,10 @@ export default function LoginPage() {
             else if (role === "KITCHEN") navigate("/kitchen");
             else navigate("/orders"); // WAITER u otros
 
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(err);
 
-            if (err.response) {
+            if (axios.isAxiosError(err) && err.response) {
                 // El backend respondió con un código de error (401, 400, etc.)
                 setError("Correo o contraseña incorrectos");
             } else {
@@ -47,18 +50,14 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-panel-bg">
             <div className="w-full max-w-md bg-panel-card rounded-2xl p-8 shadow-xl border border-white/5">
-                <h1 className="text-2xl font-bold mb-1 text-center text-wings-100">
-                    Alitas Bonnibel
-                </h1>
-                <p className="text-sm text-slate-400 mb-6 text-center">
-                    Panel de administración
-                </p>
+                <h1 className="text-2xl font-bold mb-1 text-center text-wings-100"> {tr("text.5c77c70346")} </h1>
+                <p className="text-sm text-slate-400 mb-6 text-center"> {tr("text.17c736c0c7")} </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-white mb-1">Correo electrónico</label>
+                        <label htmlFor="login-email" className="block text-white mb-1">{tr("text.59a16700ff")}</label>
                         <input
-                            type="email"
+                            id="login-email" required type="email"
                             className="w-full px-3 py-2 rounded-lg bg-black/40 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-wings-300"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -67,9 +66,9 @@ export default function LoginPage() {
                     </div>
 
                     <div>
-                        <label className="block text-white mb-1">Contraseña</label>
+                        <label htmlFor="login-password" className="block text-white mb-1">{tr("text.5a6d1c6129")}</label>
                         <input
-                            type="password"
+                            id="login-password" required type="password"
                             className="w-full px-3 py-2 rounded-lg bg-black/40 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-wings-300"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -79,7 +78,7 @@ export default function LoginPage() {
 
                     {error && (
                         <div className="text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
-                            {error}
+                            {localizeText(error)}
                         </div>
                     )}
 
@@ -88,7 +87,7 @@ export default function LoginPage() {
                         disabled={loading}
                         className="w-full py-2 rounded-lg bg-wings-500 hover:bg-wings-400 font-semibold text-sm transition disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                        {loading ? "Entrando..." : "Iniciar sesión"}
+                        {localizeText(loading ? "Entrando..." : "Iniciar sesión")}
                     </button>
                     <button
                         type="button"
@@ -100,9 +99,7 @@ export default function LoginPage() {
                             hover:bg-white/5 hover:text-white
                             transition
                         "
-                    >
-                        ← Volver al sitio
-                    </button>
+                    > {tr("text.ed6e3a63cc")} </button>
 
                 </form>
             </div>

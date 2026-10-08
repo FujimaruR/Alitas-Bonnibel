@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useLocale as useSiteLocale, money as formatMoney, t as tr, text as localizeText } from '../site/locale';
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "../api/client";
 import { AppLayout } from "../components/layout/AppLayout";
 
@@ -24,6 +25,7 @@ type Product = {
 };
 
 export default function MenuAdminPage() {
+  useSiteLocale();
   const [editing, setEditing] = useState<Product | null>(null);
 
   const [editForm, setEditForm] = useState({
@@ -92,13 +94,11 @@ export default function MenuAdminPage() {
     closeEdit();
   }
 
-  async function loadCategories() {
+  const loadCategories = useCallback(async () => {
     const res = await api.get("/admin/categories");
     setCategories(res.data);
-    if (!activeCategoryId && res.data.length) {
-      setActiveCategoryId(res.data[0].id);
-    }
-  }
+    setActiveCategoryId(previous => previous || res.data[0]?.id || previous);
+  }, []);
 
   async function loadProducts(categoryId?: number) {
     const qs = categoryId ? `?categoryId=${categoryId}` : "";
@@ -107,8 +107,8 @@ export default function MenuAdminPage() {
   }
 
   useEffect(() => {
-    loadCategories();
-  }, []);
+    void loadCategories();
+  }, [loadCategories]);
 
   useEffect(() => {
     if (activeCategoryId) loadProducts(activeCategoryId);
@@ -174,24 +174,19 @@ export default function MenuAdminPage() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-wings-100">Menú (Admin)</h1>
-            <p className="text-sm text-slate-300 mt-2">
-              Crea categorías y productos. Los inactivos no salen en el menú público.
-              Los favoritos se muestran en la landing.
-            </p>
+            <h1 className="text-3xl font-extrabold text-wings-100">{tr("text.a9833c398f")}</h1>
+            <p className="text-sm text-slate-300 mt-2"> {tr("text.3b47084615")} </p>
           </div>
           <button
             onClick={() => activeCategoryId && loadProducts(activeCategoryId)}
             className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 font-extrabold text-sm transition"
-          >
-            Recargar
-          </button>
+          > {tr("text.9d2c9d8010")} </button>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {/* Left: Categories */}
           <div className="rounded-2xl bg-panel-card border border-white/10 p-5">
-            <h2 className="font-extrabold text-white">Categorías</h2>
+            <h2 className="font-extrabold text-white">{tr("text.941a1528f5")}</h2>
 
             <div className="mt-4 grid gap-2">
               {categories.map((c) => (
@@ -206,54 +201,51 @@ export default function MenuAdminPage() {
                   ].join(" ")}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="font-extrabold text-white">{c.name}</div>
-                    <div className="text-xs text-white/60">{c.slug}</div>
+                    <div className="font-extrabold text-white">{localizeText(c.name)}</div>
+                    <div className="text-xs text-white/60">{localizeText(c.slug)}</div>
                   </div>
                 </button>
               ))}
             </div>
 
             <form onSubmit={createCategory} className="mt-6 grid gap-2">
-              <div className="text-xs text-white/60">Crear categoría</div>
+              <div className="text-xs text-white/60">{tr("text.6d74a1cb98")}</div>
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
-                placeholder="Nombre (ej. Alitas)"
+                placeholder={tr("text.dd16d75f26")}
                 value={catForm.name}
                 onChange={(e) => setCatForm((s) => ({ ...s, name: e.target.value }))}
                 required
               />
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
-                placeholder="Slug (ej. alitas)"
+                placeholder={tr("text.22c1f13ab2")}
                 value={catForm.slug}
                 onChange={(e) => setCatForm((s) => ({ ...s, slug: e.target.value }))}
                 required
               />
-              <button className="mt-2 px-4 py-2 rounded-xl bg-wings-500 hover:bg-wings-400 font-extrabold text-sm transition">
-                Crear
-              </button>
+              <button className="mt-2 px-4 py-2 rounded-xl bg-wings-500 hover:bg-wings-400 font-extrabold text-sm transition"> {tr("text.48a0686f58")} </button>
             </form>
           </div>
 
           {/* Right: Products */}
           <div className="lg:col-span-2 rounded-2xl bg-panel-card border border-white/10 p-5">
             <div className="flex items-center justify-between gap-3">
-              <h2 className="font-extrabold text-white">
-                Productos {activeCategory ? `— ${activeCategory.name}` : ""}
+              <h2 className="font-extrabold text-white"> {tr("text.14e2a639ae")} {localizeText(activeCategory ? `— ${activeCategory.name}` : "")}
               </h2>
             </div>
 
             <form onSubmit={createProduct} className="mt-4 grid gap-3 md:grid-cols-2">
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
-                placeholder="Nombre (ej. Alitas 12 pzas)"
+                placeholder={tr("text.9d9d07014d")}
                 value={prodForm.name}
                 onChange={(e) => setProdForm((s) => ({ ...s, name: e.target.value }))}
                 required
               />
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
-                placeholder="Precio (ej. 179)"
+                placeholder={tr("text.cfb3a6126f")}
                 type="number"
                 value={prodForm.price}
                 onChange={(e) => setProdForm((s) => ({ ...s, price: Number(e.target.value) }))}
@@ -261,40 +253,36 @@ export default function MenuAdminPage() {
               />
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white md:col-span-2"
-                placeholder="Image URL"
+                placeholder={tr("text.35c80f9645")}
                 value={prodForm.imageUrl}
                 onChange={(e) => setProdForm((s) => ({ ...s, imageUrl: e.target.value }))}
                 required
               />
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white md:col-span-2"
-                placeholder="Descripción (opcional)"
+                placeholder={tr("text.7908858ff7")}
                 value={prodForm.description}
                 onChange={(e) => setProdForm((s) => ({ ...s, description: e.target.value }))}
               />
               <input
                 className="bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white md:col-span-2"
-                placeholder="Badges separados por coma (ej. Más pedido, 2 salsas)"
+                placeholder={tr("text.e7f1aa5a59")}
                 value={prodForm.badges}
                 onChange={(e) => setProdForm((s) => ({ ...s, badges: e.target.value }))}
               />
 
               {/* ✅ NUEVO: favorito al crear */}
               <div className="md:col-span-2 flex items-center justify-between rounded-xl bg-black/20 border border-white/10 px-3 py-2">
-                <div className="text-sm text-white/80 font-extrabold">⭐ Favorito (landing)</div>
+                <div className="text-sm text-white/80 font-extrabold">{tr("text.77d0785671")}</div>
                 <label className="inline-flex items-center gap-2 text-sm text-white/70">
                   <input
                     type="checkbox"
                     checked={prodForm.isFeatured}
                     onChange={(e) => setProdForm((s) => ({ ...s, isFeatured: e.target.checked }))}
-                  />
-                  Marcar
-                </label>
+                  /> {tr("text.f05ea232f8")} </label>
               </div>
 
-              <button className="md:col-span-2 mt-1 px-4 py-2 rounded-xl bg-wings-500 hover:bg-wings-400 font-extrabold text-sm transition">
-                Crear producto
-              </button>
+              <button className="md:col-span-2 mt-1 px-4 py-2 rounded-xl bg-wings-500 hover:bg-wings-400 font-extrabold text-sm transition"> {tr("text.7b0b7ab8ba")} </button>
             </form>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -302,15 +290,13 @@ export default function MenuAdminPage() {
                 <div key={p.id} className="rounded-2xl bg-black/20 border border-white/10 p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <div className="font-extrabold text-white">{p.name}</div>
-                      <div className="text-sm text-white/70 mt-1">${p.price}</div>
-                      <div className="text-xs text-white/50 mt-1">#{p.id}</div>
+                      <div className="font-extrabold text-white">{localizeText(p.name)}</div>
+                      <div className="text-sm text-white/70 mt-1">{formatMoney(p.price)}</div>
+                      <div className="text-xs text-white/50 mt-1">#{localizeText(p.id)}</div>
                     </div>
 
                     {p.isFeatured ? (
-                      <div className="text-[10px] font-extrabold px-2 py-1 rounded-full bg-wings-500/20 text-wings-100">
-                        ⭐ Favorito
-                      </div>
+                      <div className="text-[10px] font-extrabold px-2 py-1 rounded-full bg-wings-500/20 text-wings-100"> {tr("text.65a9147b67")} </div>
                     ) : null}
                   </div>
 
@@ -318,31 +304,27 @@ export default function MenuAdminPage() {
                     <button
                       onClick={() => openEdit(p)}
                       className="text-xs font-extrabold px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition"
-                    >
-                      Editar
-                    </button>
+                    > {tr("text.2b5f23437f")} </button>
 
                     <button
                       onClick={() => toggleFeatured(p)}
                       className="text-xs font-extrabold px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition"
                     >
-                      {p.isFeatured ? "Quitar favorito" : "Hacer favorito"}
+                      {localizeText(p.isFeatured ? "Quitar favorito" : "Hacer favorito")}
                     </button>
 
                     <button
                       onClick={() => toggleProduct(p)}
                       className="text-xs font-extrabold px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 transition"
                     >
-                      {p.isActive ? "Desactivar" : "Activar"}
+                      {localizeText(p.isActive ? "Desactivar" : "Activar")}
                     </button>
                   </div>
                 </div>
               ))}
 
               {!products.length ? (
-                <div className="text-sm text-white/60 py-8">
-                  No hay productos en esta categoría aún.
-                </div>
+                <div className="text-sm text-white/60 py-8"> {tr("text.f6ab8a1ae9")} </div>
               ) : null}
             </div>
           </div>
@@ -355,21 +337,19 @@ export default function MenuAdminPage() {
             <div className="relative w-full max-w-xl rounded-2xl bg-panel-card border border-white/10 p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-extrabold text-white">Editar producto</h3>
-                  <div className="text-xs text-white/60 mt-1">ID #{editing.id}</div>
+                  <h3 className="text-xl font-extrabold text-white">{tr("text.c45766d474")}</h3>
+                  <div className="text-xs text-white/60 mt-1">{tr("text.8cbdfad7f9")}{localizeText(editing.id)}</div>
                 </div>
 
                 <button
                   onClick={closeEdit}
                   className="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-sm font-extrabold transition"
-                >
-                  Cerrar
-                </button>
+                > {tr("text.4b0816bbd5")} </button>
               </div>
 
               <div className="mt-5 grid gap-3 md:grid-cols-2">
                 <div className="md:col-span-2">
-                  <label className="text-xs text-white/60">Categoría</label>
+                  <label className="text-xs text-white/60">{tr("text.e8149c028c")}</label>
                   <select
                     value={editForm.categoryId}
                     onChange={(e) => setEditForm((s) => ({ ...s, categoryId: Number(e.target.value) }))}
@@ -377,14 +357,14 @@ export default function MenuAdminPage() {
                   >
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
-                        {c.name}
+                        {localizeText(c.name)}
                       </option>
                     ))}
                   </select>
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-xs text-white/60">Nombre</label>
+                  <label className="text-xs text-white/60">{tr("text.e68491e91c")}</label>
                   <input
                     value={editForm.name}
                     onChange={(e) => setEditForm((s) => ({ ...s, name: e.target.value }))}
@@ -393,7 +373,7 @@ export default function MenuAdminPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs text-white/60">Precio</label>
+                  <label className="text-xs text-white/60">{tr("text.18e0707ea7")}</label>
                   <input
                     type="number"
                     value={editForm.price}
@@ -403,32 +383,30 @@ export default function MenuAdminPage() {
                 </div>
 
                 <div>
-                  <label className="text-xs text-white/60">Activo</label>
+                  <label className="text-xs text-white/60">{tr("text.10140fb91e")}</label>
                   <select
                     value={editForm.isActive ? "1" : "0"}
                     onChange={(e) => setEditForm((s) => ({ ...s, isActive: e.target.value === "1" }))}
                     className="w-full bg-black/20 border border-white/10 rounded-xl px-3 py-2 text-sm text-white"
                   >
-                    <option value="1">Sí</option>
-                    <option value="0">No</option>
+                    <option value="1">{tr("text.873caab4d0")}</option>
+                    <option value="0">{tr("text.816c52fd2b")}</option>
                   </select>
                 </div>
 
                 {/* ✅ NUEVO: favorito */}
                 <div className="md:col-span-2 flex items-center justify-between rounded-xl bg-black/20 border border-white/10 px-3 py-2">
-                  <div className="text-sm text-white/80 font-extrabold">⭐ Favorito (landing)</div>
+                  <div className="text-sm text-white/80 font-extrabold">{tr("text.77d0785671")}</div>
                   <label className="inline-flex items-center gap-2 text-sm text-white/70">
                     <input
                       type="checkbox"
                       checked={editForm.isFeatured}
                       onChange={(e) => setEditForm((s) => ({ ...s, isFeatured: e.target.checked }))}
-                    />
-                    Marcar
-                  </label>
+                    /> {tr("text.f05ea232f8")} </label>
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-xs text-white/60">Image URL</label>
+                  <label className="text-xs text-white/60">{tr("text.35c80f9645")}</label>
                   <input
                     value={editForm.imageUrl}
                     onChange={(e) => setEditForm((s) => ({ ...s, imageUrl: e.target.value }))}
@@ -437,7 +415,7 @@ export default function MenuAdminPage() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-xs text-white/60">Descripción</label>
+                  <label className="text-xs text-white/60">{tr("text.7fda397059")}</label>
                   <textarea
                     rows={3}
                     value={editForm.description}
@@ -447,7 +425,7 @@ export default function MenuAdminPage() {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-xs text-white/60">Badges (separados por coma)</label>
+                  <label className="text-xs text-white/60">{tr("text.6677b8a69f")}</label>
                   <input
                     value={editForm.badges}
                     onChange={(e) => setEditForm((s) => ({ ...s, badges: e.target.value }))}
@@ -460,16 +438,12 @@ export default function MenuAdminPage() {
                 <button
                   onClick={closeEdit}
                   className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 font-extrabold text-sm transition"
-                >
-                  Cancelar
-                </button>
+                > {tr("text.c111e0ab9d")} </button>
 
                 <button
                   onClick={saveEdit}
                   className="px-4 py-2 rounded-xl bg-wings-500 hover:bg-wings-400 font-extrabold text-sm transition"
-                >
-                  Guardar cambios
-                </button>
+                > {tr("text.831d46b9be")} </button>
               </div>
             </div>
           </div>

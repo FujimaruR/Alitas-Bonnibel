@@ -1,23 +1,14 @@
+import { useLocale as useSiteLocale, text as localizeText } from '../site/locale';
 import type { ReactNode } from "react";
-import { createContext, useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { CartContext } from './cart.shared';
+import type { CartContextValue } from './cart.shared';
 import type { CartItem } from "./cart.types";
 
 type AddItemInput = Omit<CartItem, "qty"> & { qty?: number };
 
-type CartContextValue = {
-  items: CartItem[];
-  addItem: (item: AddItemInput) => void;
-  removeItem: (id: string) => void;
-  inc: (id: string) => void;
-  dec: (id: string) => void;
-  clear: () => void;
-  subtotal: number;
-  totalItems: number;
-};
-
-const CartContext = createContext<CartContextValue | null>(null);
-
 export function CartProvider({ children }: { children: ReactNode }) {
+  useSiteLocale();
   const [items, setItems] = useState<CartItem[]>([]);
 
   function addItem(input: AddItemInput) {
@@ -76,11 +67,5 @@ export function CartProvider({ children }: { children: ReactNode }) {
     totalItems,
   };
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
-}
-
-export function useCart() {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used within CartProvider");
-  return ctx;
+  return <CartContext.Provider value={value}>{localizeText(children)}</CartContext.Provider>;
 }

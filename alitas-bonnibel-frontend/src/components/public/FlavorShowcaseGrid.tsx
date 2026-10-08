@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../../site/locale';
 import { useState } from "react";
 
 type Flavor = {
@@ -49,6 +50,7 @@ const FLAVORS: Flavor[] = [
 ];
 
 export function FlavorShowcaseGrid() {
+  useSiteLocale();
   const [active, setActive] = useState<number>(0);
 
   return (
@@ -117,23 +119,23 @@ export function FlavorShowcaseGrid() {
                 <div>
                   <div className="flex items-center gap-2">
                     <h3 className="font-extrabold text-lg md:text-base md:group-hover:text-base">
-                      {f.name}
+                      {localizeText(f.name)}
                     </h3>
 
                     {f.badge && (
                       <span className="px-2 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wide bg-wings-100 text-slate-900 shadow">
-                        {f.badge}
+                        {localizeText(f.badge)}
                       </span>
                     )}
                   </div>
 
                   {/* ✅ MÓVIL: siempre muestra short */}
                   <p className="mt-2 text-sm text-white/85 md:text-xs md:text-white/75">
-                    {f.short}
+                    {localizeText(f.short)}
                   </p>
                 </div>
 
-                <span className="text-sm text-white">{f.heat}</span>
+                <span className="text-sm text-white">{localizeText(f.heat)}</span>
               </div>
 
               {/* ✅ Desktop: info extra solo cuando active */}
@@ -144,35 +146,23 @@ export function FlavorShowcaseGrid() {
                   ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}
                 `}
               >
-                <p className="text-sm text-white/90 max-w-xl">{f.long}</p>
+                <p className="text-sm text-white/90 max-w-xl">{localizeText(f.long)}</p>
 
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs">
-                    Ideal con ranch
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs">
-                    Extra salsa +$10
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs">
-                    Boneless compatible
-                  </span>
+                  <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs"> {tr("text.eae4b7eb1c")} </span>
+                  <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs"> {tr("text.faef499a26")} </span>
+                  <span className="px-3 py-1 rounded-full bg-white/15 text-white text-xs"> {tr("text.242188afee")} </span>
                 </div>
 
                 <div className="flex items-center gap-3 mt-1">
-                  <span className="text-xs text-white/70">
-                    Pasa el mouse por otro sabor para cambiar.
-                  </span>
+                  <span className="text-xs text-white/70"> {tr("text.9c756414ab")} </span>
 
-                  <span className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-wings-500 hover:bg-wings-400 text-white text-sm font-extrabold shadow-lg shadow-wings-500/30 transition hover:scale-105">
-                    Elegir
-                  </span>
+                  <span className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-wings-500 hover:bg-wings-400 text-white text-sm font-extrabold shadow-lg shadow-wings-500/30 transition hover:scale-105"> {tr("text.1c4c8859ae")} </span>
                 </div>
               </div>
 
               {/* ✅ Hint solo desktop y solo cuando no active */}
-              <div className={`mt-4 hidden md:block text-xs text-white/70 ${isActive ? "opacity-0" : "opacity-100"}`}>
-                Pasa el mouse para ver más →
-              </div>
+              <div className={`mt-4 hidden md:block text-xs text-white/70 ${isActive ? "opacity-0" : "opacity-100"}`}> {tr("text.6d8a4d65c3")} </div>
             </div>
           </button>
         );

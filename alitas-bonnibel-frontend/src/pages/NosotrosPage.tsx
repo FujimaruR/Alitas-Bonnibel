@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../site/locale';
 import { PublicLayout } from "../components/layout/PublicLayout";
 import { Reveal } from "../components/public/Reveal";
 import { WaveSeparatorGradient } from "../components/public/WaveSeparatorGradient";
@@ -7,23 +8,17 @@ const WHATSAPP_TEXT = encodeURIComponent("Hola! Quiero conocer sus promos de hoy
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
 
 export default function NosotrosPage() {
+  useSiteLocale();
     return (
         <PublicLayout>
             {/* HERO */}
             <section className="relative -mt-24 pt-32 bg-gradient-to-br from-wings-100 via-wings-300 to-wings-500">
                 <div className="max-w-6xl mx-auto px-4 py-20">
                     <Reveal>
-                        <p className="text-xs font-extrabold tracking-[0.25em] uppercase text-slate-800">
-                            Nuestra historia
-                        </p>
-                        <h1 className="mt-3 font-display text-4xl md:text-6xl text-slate-900 leading-tight">
-                            Más que alitas:
-                            <span className="block">un lugar para el antojo.</span>
+                        <p className="text-xs font-extrabold tracking-[0.25em] uppercase text-slate-800"> {tr("text.63e7cb7598")} </p>
+                        <h1 className="mt-3 font-display text-4xl md:text-6xl text-slate-900 leading-tight"> {tr("text.87c47b5200")} <span className="block">{tr("text.03005e5a76")}</span>
                         </h1>
-                        <p className="mt-5 max-w-2xl text-slate-800/90 text-sm md:text-base">
-                            Alitas Bonnibel nace con una idea simple: porciones generosas, salsas que se noten
-                            y una experiencia que se sienta “de casa”, pero con nivel.
-                        </p>
+                        <p className="mt-5 max-w-2xl text-slate-800/90 text-sm md:text-base"> {tr("text.e261ac6160")} </p>
 
                         <div className="mt-7 flex flex-wrap gap-3 items-center">
                             <a
@@ -37,13 +32,9 @@ export default function NosotrosPage() {
                   shadow-[0_18px_45px_rgba(0,0,0,0.30)]
                   hover:scale-105 transition
                 "
-                            >
-                                💬 Escríbenos por WhatsApp
-                            </a>
+                            > {tr("text.7e7f2a110f")} </a>
 
-                            <span className="text-xs text-slate-900/70">
-                                ⏰ 4:00 pm – 11:00 pm · NL
-                            </span>
+                            <span className="text-xs text-slate-900/70"> {tr("text.0c26d69f1c")} </span>
                         </div>
                     </Reveal>
                 </div>
@@ -79,18 +70,13 @@ export default function NosotrosPage() {
                             <div className="absolute inset-0 ring-1 ring-white/20 rounded-3xl" />
 
                             <div className="relative p-8 text-white">
-                                <h2 className="font-display text-3xl md:text-4xl leading-tight">
-                                    Salsas que se notan.
-                                </h2>
-                                <p className="mt-3 text-white/85 max-w-lg">
-                                    Aquí no venimos a “cubrir” alitas, venimos a presumir salsa.
-                                    Del clásico búfalo al mango habanero: sabor primero, siempre.
-                                </p>
+                                <h2 className="font-display text-3xl md:text-4xl leading-tight"> {tr("text.76fdf7faa4")} </h2>
+                                <p className="mt-3 text-white/85 max-w-lg"> {tr("text.a4431902eb")} </p>
 
                                 <div className="mt-6 flex flex-wrap gap-2 text-xs">
-                                    <span className="px-3 py-1 rounded-full bg-white/15">🔥 Picor real</span>
-                                    <span className="px-3 py-1 rounded-full bg-white/15">🍋 Opciones frescas</span>
-                                    <span className="px-3 py-1 rounded-full bg-white/15">🍯 Dulce-picante</span>
+                                    <span className="px-3 py-1 rounded-full bg-white/15">{tr("text.08624efeb9")}</span>
+                                    <span className="px-3 py-1 rounded-full bg-white/15">{tr("text.db4f50fe40")}</span>
+                                    <span className="px-3 py-1 rounded-full bg-white/15">{tr("text.90eed9d57d")}</span>
                                 </div>
                             </div>
                         </div>
@@ -109,24 +95,21 @@ export default function NosotrosPage() {
               "
                         >
                             <div className="text-3xl">🎯</div>
-                            <h3 className="mt-3 text-xl font-extrabold text-slate-900">Nuestra misión</h3>
-                            <p className="mt-2 text-sm text-slate-600">
-                                Hacer que cada pedido sea fácil, rápido y delicioso: porción generosa,
-                                salsas memorables y papas crujientes siempre.
-                            </p>
+                            <h3 className="mt-3 text-xl font-extrabold text-slate-900">{tr("text.8afc30a2bc")}</h3>
+                            <p className="mt-2 text-sm text-slate-600"> {tr("text.603b875f24")} </p>
 
                             <div className="mt-5 grid gap-2 text-sm">
                                 <div className="flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-wings-500" />
-                                    <span className="font-semibold text-slate-800">Calidad constante</span>
+                                    <span className="font-semibold text-slate-800">{tr("text.92856a3737")}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-wings-400" />
-                                    <span className="font-semibold text-slate-800">Sabor auténtico</span>
+                                    <span className="font-semibold text-slate-800">{tr("text.023a865e27")}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-wings-300" />
-                                    <span className="font-semibold text-slate-800">Servicio cercano</span>
+                                    <span className="font-semibold text-slate-800">{tr("text.696cb30189")}</span>
                                 </div>
                             </div>
                         </div>
@@ -161,9 +144,9 @@ export default function NosotrosPage() {
                   h-full
                 "
                             >
-                                <div className="text-3xl">{v.icon}</div>
-                                <h4 className="mt-3 font-extrabold text-slate-900">{v.title}</h4>
-                                <p className="mt-2 text-sm text-slate-600">{v.text}</p>
+                                <div className="text-3xl">{localizeText(v.icon)}</div>
+                                <h4 className="mt-3 font-extrabold text-slate-900">{localizeText(v.title)}</h4>
+                                <p className="mt-2 text-sm text-slate-600">{localizeText(v.text)}</p>
                             </div>
                         </Reveal>
                     ))}
@@ -175,12 +158,8 @@ export default function NosotrosPage() {
                 <Reveal>
                     <div className="flex items-end justify-between gap-6">
                         <div>
-                            <h2 className="font-display text-3xl md:text-4xl text-slate-900">
-                                Cómo lo hacemos
-                            </h2>
-                            <p className="mt-2 text-sm text-slate-600 max-w-2xl">
-                                Un proceso simple, pero con detalles que hacen la diferencia.
-                            </p>
+                            <h2 className="font-display text-3xl md:text-4xl text-slate-900"> {tr("text.9d0a633bbf")} </h2>
+                            <p className="mt-2 text-sm text-slate-600 max-w-2xl"> {tr("text.5ffe5f8498")} </p>
                         </div>
                         <a
                             href={WHATSAPP_URL}
@@ -195,9 +174,7 @@ export default function NosotrosPage() {
                 hover:bg-slate-900 hover:text-white
                 hover:scale-105 transition
               "
-                        >
-                            Pregunta por promos →
-                        </a>
+                        > {tr("text.6a5587bef7")} </a>
                     </div>
                 </Reveal>
 
@@ -230,12 +207,12 @@ export default function NosotrosPage() {
                 "
                             >
                                 <div className="text-wings-500 font-extrabold tracking-wide">
-                                    {s.step}
+                                    {localizeText(s.step)}
                                 </div>
                                 <h3 className="mt-2 text-lg font-extrabold text-slate-900">
-                                    {s.title}
+                                    {localizeText(s.title)}
                                 </h3>
-                                <p className="mt-2 text-sm text-slate-600">{s.text}</p>
+                                <p className="mt-2 text-sm text-slate-600">{localizeText(s.text)}</p>
                             </div>
                         </Reveal>
                     ))}
@@ -255,9 +232,7 @@ export default function NosotrosPage() {
                 shadow-[0_20px_60px_rgba(253,58,45,0.45)]
                 hover:scale-105 transition
               "
-                        >
-                            🍗 Haz tu pedido por WhatsApp
-                        </a>
+                        > {tr("text.6795b8ce22")} </a>
                     </div>
                 </Reveal>
             </section>

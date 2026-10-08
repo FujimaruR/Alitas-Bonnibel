@@ -1,3 +1,4 @@
+import LocaleTools from './site/LocaleTools';
 import type { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
@@ -24,6 +25,8 @@ function PrivateRoute({ children }: { children: ReactElement }) {
 
 export default function App() {
   return (
+    <>
+    <LocaleTools />
     <Routes>
       {/* Sitio público */}
       <Route path="/" element={<PublicHomePage />} />
@@ -103,5 +106,6 @@ export default function App() {
       {/* Cualquier otra ruta manda a home */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </>
   );
 }

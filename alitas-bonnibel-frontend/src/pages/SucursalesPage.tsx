@@ -1,3 +1,4 @@
+import { useLocale as useSiteLocale, t as tr, text as localizeText } from '../site/locale';
 import { PublicLayout } from "../components/layout/PublicLayout";
 import { Reveal } from "../components/public/Reveal";
 import { BranchesMap } from "../components/public/BranchesMap";
@@ -22,18 +23,15 @@ const BRANCHES = [
 ];
 
 export default function SucursalesPage() {
+  useSiteLocale();
     return (
         <PublicLayout>
             {/* HERO */}
             <section className="relative -mt-24 pt-32 bg-gradient-to-br from-wings-100 via-wings-300 to-wings-500">
                 <div className="max-w-6xl mx-auto px-4 py-20">
                     <Reveal>
-                        <h1 className="font-display text-4xl md:text-6xl text-slate-900">
-                            Nuestras sucursales
-                        </h1>
-                        <p className="mt-4 max-w-xl text-slate-800">
-                            Encuentra la sucursal más cercana y ven por tus alitas favoritas 🍗🔥
-                        </p>
+                        <h1 className="font-display text-4xl md:text-6xl text-slate-900"> {tr("text.1596a5a2ec")} </h1>
+                        <p className="mt-4 max-w-xl text-slate-800"> {tr("text.7606bc1042")} </p>
                     </Reveal>
                 </div>
             </section>
@@ -66,17 +64,15 @@ export default function SucursalesPage() {
                 "
                             >
                                 <h3 className="font-extrabold text-lg text-slate-900">
-                                    {b.name}
+                                    {localizeText(b.name)}
                                 </h3>
 
                                 <p className="mt-2 text-sm text-slate-600">
-                                    {b.address}
+                                    {localizeText(b.address)}
                                 </p>
 
                                 <div className="mt-4 flex items-center justify-between">
-                                    <span className="text-xs text-slate-500">
-                                        🕓 4:00 pm – 11:00 pm
-                                    </span>
+                                    <span className="text-xs text-slate-500"> {tr("text.9571011075")} </span>
 
                                     <a
                                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -94,9 +90,7 @@ export default function SucursalesPage() {
                       hover:bg-wings-500 hover:text-white
                       transition
                     "
-                                    >
-                                        Ver en mapa
-                                        <span>↗</span>
+                                    > {tr("text.3b0e9da8af")} <span>↗</span>
                                     </a>
                                 </div>
                             </article>
